@@ -194,8 +194,17 @@
     transition:border-color .18s ease, box-shadow .18s ease;
   }
   .calc-type-select:focus{outline:none;border-color:var(--navy-700);box-shadow:0 0 0 4px rgba(23,41,74,.08);background-color:var(--white);}
-  .calc-row .lbl{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:8px;}
+  .calc-row .lbl{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;margin-bottom:8px;}
   .calc-row .lbl span:last-child{color:#4d6a12;}
+  .calc-num-wrap{display:inline-flex;align-items:baseline;color:#4d6a12;}
+  .calc-num{
+    width:9.5ch;text-align:right;font:inherit;font-weight:700;color:#4d6a12;
+    border:1px solid transparent;border-radius:8px;background:transparent;padding:2px 4px;margin-right:2px;
+    transition:border-color .15s ease, background .15s ease, box-shadow .15s ease;
+  }
+  .calc-num.calc-num-sm{width:4.2ch;}
+  .calc-num:hover{border-color:var(--line);}
+  .calc-num:focus{outline:none;border-color:var(--navy-700);background:var(--white);box-shadow:0 0 0 3px rgba(23,41,74,.08);}
   input[type=range]{
     -webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:999px;
     background:linear-gradient(90deg,var(--lime-400) var(--fill,50%),var(--line) var(--fill,50%));
@@ -375,6 +384,7 @@
   }
   @media (max-width:860px){
     nav.primary,.header-phone{display:none;}
+    .header-cta .btn{display:none;}
     .menu-toggle{display:flex;}
     .steps,.offer-grid,.testi-grid{grid-template-columns:1fr;}
     .step-arrow{display:none;}
@@ -497,15 +507,24 @@
           </div>
 
           <div class="calc-row">
-            <div class="lbl"><span id="amount-lbl">Kwota finansowania</span><span id="amount-out">60 000 zł</span></div>
+            <div class="lbl">
+              <span id="amount-lbl">Kwota finansowania</span>
+              <span class="calc-num-wrap"><input type="text" inputmode="numeric" id="amount-num" class="calc-num" value="60 000" aria-label="Kwota finansowania w złotych">&nbsp;zł</span>
+            </div>
             <input type="range" id="amount" min="5000" max="300000" step="1000" value="60000" />
           </div>
           <div class="calc-row" id="down-row" style="display:none;">
-            <div class="lbl"><span>Wkład własny</span><span id="down-out">20% · 80 000 zł</span></div>
+            <div class="lbl">
+              <span>Wkład własny</span>
+              <span class="calc-num-wrap"><input type="text" inputmode="numeric" id="down-num" class="calc-num calc-num-sm" value="20" aria-label="Wkład własny w procentach">% · <span id="down-amount-out">80 000 zł</span></span>
+            </div>
             <input type="range" id="down" min="10" max="50" step="1" value="20" />
           </div>
           <div class="calc-row">
-            <div class="lbl"><span>Okres spłaty</span><span id="period-out">48 mies.</span></div>
+            <div class="lbl">
+              <span>Okres spłaty</span>
+              <span class="calc-num-wrap"><input type="text" inputmode="numeric" id="period-num" class="calc-num calc-num-sm" value="48" aria-label="Okres spłaty w miesiącach">&nbsp;mies.</span>
+            </div>
             <input type="range" id="period" min="6" max="120" step="6" value="48" />
           </div>
 
@@ -970,10 +989,12 @@
   var down = document.getElementById('down');
   var downRow = document.getElementById('down-row');
   var amountLbl = document.getElementById('amount-lbl');
-  var amountOut = document.getElementById('amount-out');
-  var periodOut = document.getElementById('period-out');
-  var downOut = document.getElementById('down-out');
+  var amountNum = document.getElementById('amount-num');
+  var periodNum = document.getElementById('period-num');
+  var downNum = document.getElementById('down-num');
+  var downAmountOut = document.getElementById('down-amount-out');
   var rateOut = document.getElementById('rate-out');
+  var editingField = null;
 
   // illustrative estimates only, not a real financial offer
   var calcModes = {
@@ -994,7 +1015,10 @@
     }
   };
 
-  function fmtPLN(n){ return Math.round(n).toLocaleString('pl-PL') + ' zł'; }
+  function fmtInt(n){ return Math.round(n).toLocaleString('pl-PL'); }
+  function fmtPLN(n){ return fmtInt(n) + ' zł'; }
+  function parseNum(str){ return parseInt(String(str).replace(/\D/g,''), 10) || 0; }
+  function clamp(v, min, max){ return Math.min(max, Math.max(min, v)); }
   function fillRange(el){
     var min = parseFloat(el.min), max = parseFloat(el.max), val = parseFloat(el.value);
     var pct = ((val - min) / (max - min)) * 100;
@@ -1016,14 +1040,15 @@
     var cfg = calcModes[calcType.value];
     var a = parseFloat(amount.value);
     var p = parseFloat(period.value);
-    amountOut.textContent = fmtPLN(a);
-    periodOut.textContent = p + ' mies.';
+    if(editingField !== 'amount') amountNum.value = fmtInt(a);
+    if(editingField !== 'period') periodNum.value = p;
 
     var principal = a;
     if(cfg.downPayment){
       var downPct = parseFloat(down.value);
       var downAmt = a * (downPct / 100);
-      downOut.textContent = downPct + '% · ' + fmtPLN(downAmt);
+      if(editingField !== 'down') downNum.value = downPct;
+      downAmountOut.textContent = fmtPLN(downAmt);
       principal = a - downAmt;
       fillRange(down);
     }
@@ -1035,6 +1060,21 @@
     fillRange(amount);
     fillRange(period);
   }
+  function bindNumberInput(numEl, rangeEl, fieldName){
+    numEl.addEventListener('focus', function(){ editingField = fieldName; });
+    numEl.addEventListener('input', function(){
+      var v = clamp(parseNum(numEl.value), parseFloat(rangeEl.min), parseFloat(rangeEl.max));
+      rangeEl.value = v;
+      calc();
+    });
+    numEl.addEventListener('blur', function(){
+      editingField = null;
+      calc();
+    });
+    numEl.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ numEl.blur(); }
+    });
+  }
   calcType.addEventListener('change', function(){
     applyMode(calcType.value, true);
     calc();
@@ -1042,6 +1082,9 @@
   amount.addEventListener('input', calc);
   period.addEventListener('input', calc);
   down.addEventListener('input', calc);
+  bindNumberInput(amountNum, amount, 'amount');
+  bindNumberInput(periodNum, period, 'period');
+  bindNumberInput(downNum, down, 'down');
   applyMode(calcType.value, false);
   calc();
 
