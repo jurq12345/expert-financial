@@ -186,6 +186,14 @@
   .calc-card h4{font-size:14.5px;font-weight:700;margin-bottom:2px;}
   .calc-card .sub{font-size:12.5px;color:var(--muted);margin-bottom:16px;}
   .calc-row{margin-bottom:16px;}
+  .calc-type-select{
+    width:100%;appearance:none;-webkit-appearance:none;font:inherit;font-size:13.5px;font-weight:700;color:var(--navy-900);
+    border:1px solid var(--line);border-radius:12px;padding:12px 38px 12px 14px;background:var(--paper);cursor:pointer;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b6b82' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 14px center;background-size:16px;
+    transition:border-color .18s ease, box-shadow .18s ease;
+  }
+  .calc-type-select:focus{outline:none;border-color:var(--navy-700);box-shadow:0 0 0 4px rgba(23,41,74,.08);background-color:var(--white);}
   .calc-row .lbl{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:8px;}
   .calc-row .lbl span:last-child{color:#4d6a12;}
   input[type=range]{
@@ -479,11 +487,22 @@
 
         <div class="calc-card">
           <h4>Kalkulator raty — przykład</h4>
-          <p class="sub">Przesuń suwaki i zobacz orientacyjną wysokość raty</p>
+          <p class="sub">Wybierz rodzaj finansowania i przesuń suwaki</p>
 
           <div class="calc-row">
-            <div class="lbl"><span>Kwota finansowania</span><span id="amount-out">60 000 zł</span></div>
+            <select id="calc-type" class="calc-type-select">
+              <option value="gotowkowy">Kredyt gotówkowy</option>
+              <option value="hipoteczny">Kredyt hipoteczny</option>
+            </select>
+          </div>
+
+          <div class="calc-row">
+            <div class="lbl"><span id="amount-lbl">Kwota finansowania</span><span id="amount-out">60 000 zł</span></div>
             <input type="range" id="amount" min="5000" max="300000" step="1000" value="60000" />
+          </div>
+          <div class="calc-row" id="down-row" style="display:none;">
+            <div class="lbl"><span>Wkład własny</span><span id="down-out">20% · 80 000 zł</span></div>
+            <input type="range" id="down" min="10" max="50" step="1" value="20" />
           </div>
           <div class="calc-row">
             <div class="lbl"><span>Okres spłaty</span><span id="period-out">48 mies.</span></div>
@@ -945,32 +964,85 @@
   }
 
   // loan calculator
+  var calcType = document.getElementById('calc-type');
   var amount = document.getElementById('amount');
   var period = document.getElementById('period');
+  var down = document.getElementById('down');
+  var downRow = document.getElementById('down-row');
+  var amountLbl = document.getElementById('amount-lbl');
   var amountOut = document.getElementById('amount-out');
   var periodOut = document.getElementById('period-out');
+  var downOut = document.getElementById('down-out');
   var rateOut = document.getElementById('rate-out');
 
-  function fmtPLN(n){ return n.toLocaleString('pl-PL') + ' zł'; }
+  // illustrative estimates only, not a real financial offer
+  var calcModes = {
+    gotowkowy: {
+      label: 'Kwota finansowania',
+      amount: {min:5000, max:300000, step:1000, value:60000},
+      period: {min:6, max:120, step:6, value:48},
+      monthlyRate: 0.0079,
+      downPayment: false
+    },
+    hipoteczny: {
+      label: 'Wartość nieruchomości',
+      amount: {min:150000, max:1500000, step:10000, value:400000},
+      period: {min:60, max:360, step:12, value:300},
+      monthlyRate: 0.0065,
+      downPayment: true,
+      downDefault: 20
+    }
+  };
+
+  function fmtPLN(n){ return Math.round(n).toLocaleString('pl-PL') + ' zł'; }
   function fillRange(el){
     var min = parseFloat(el.min), max = parseFloat(el.max), val = parseFloat(el.value);
     var pct = ((val - min) / (max - min)) * 100;
     el.style.setProperty('--fill', pct + '%');
   }
+  function applyMode(mode, resetValues){
+    var cfg = calcModes[mode];
+    amountLbl.textContent = cfg.label;
+    amount.min = cfg.amount.min; amount.max = cfg.amount.max; amount.step = cfg.amount.step;
+    period.min = cfg.period.min; period.max = cfg.period.max; period.step = cfg.period.step;
+    if(resetValues){
+      amount.value = cfg.amount.value;
+      period.value = cfg.period.value;
+      if(cfg.downPayment) down.value = cfg.downDefault;
+    }
+    downRow.style.display = cfg.downPayment ? '' : 'none';
+  }
   function calc(){
+    var cfg = calcModes[calcType.value];
     var a = parseFloat(amount.value);
     var p = parseFloat(period.value);
     amountOut.textContent = fmtPLN(a);
     periodOut.textContent = p + ' mies.';
+
+    var principal = a;
+    if(cfg.downPayment){
+      var downPct = parseFloat(down.value);
+      var downAmt = a * (downPct / 100);
+      downOut.textContent = downPct + '% · ' + fmtPLN(downAmt);
+      principal = a - downAmt;
+      fillRange(down);
+    }
+
     // illustrative simple estimate (annuity-like), not a real financial offer
-    var monthlyRate = 0.0079;
-    var rate = (a * monthlyRate * Math.pow(1 + monthlyRate, p)) / (Math.pow(1 + monthlyRate, p) - 1);
+    var monthlyRate = cfg.monthlyRate;
+    var rate = (principal * monthlyRate * Math.pow(1 + monthlyRate, p)) / (Math.pow(1 + monthlyRate, p) - 1);
     rateOut.innerHTML = Math.round(rate).toLocaleString('pl-PL') + ' zł<small>&nbsp;/mies.</small>';
     fillRange(amount);
     fillRange(period);
   }
+  calcType.addEventListener('change', function(){
+    applyMode(calcType.value, true);
+    calc();
+  });
   amount.addEventListener('input', calc);
   period.addEventListener('input', calc);
+  down.addEventListener('input', calc);
+  applyMode(calcType.value, false);
   calc();
 
   // topic prefill from offer cards
