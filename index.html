@@ -118,7 +118,8 @@
   .brand{display:flex;align-items:center;gap:11px;font-family:var(--ff-head);font-weight:800;font-size:19px;color:var(--navy-900);}
   .brand .mark{width:38px;height:38px;flex:none;}
   .brand b{color:var(--navy-900);}
-  .brand span.accent{color:#6f8a17;}
+  .brand .wordmark{display:inline-flex;}
+  .brand span.accent{color:#6f8a17;margin-left:3px;}
   nav.primary{display:flex;align-items:center;gap:2px;}
   nav.primary a{padding:10px 15px;border-radius:999px;font-weight:600;font-size:14.5px;color:var(--navy-800);transition:background-color .18s ease,color .18s ease;}
   nav.primary a:hover{background:var(--white);color:var(--navy-900);}
@@ -385,7 +386,7 @@
   <div class="container nav-row">
     <a href="#top" class="brand">
       <svg class="mark" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#0b1526"/><path d="M16 40 L27 28 L35 35 L48 20" stroke="#cdeb52" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 20 H48 V28" stroke="#cdeb52" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <b>Expert</b><span class="accent">&nbsp;Financial</span>
+      <span class="wordmark"><b>Expert</b><span class="accent">Financial</span></span>
     </a>
     <nav class="primary">
       <a href="#jak-dzialamy">Jak działamy</a>
