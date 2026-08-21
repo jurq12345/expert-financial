@@ -26,7 +26,7 @@
   },
   "telephone": ["+48690436069", "+48735936237"],
   "url": "https://expert-financial.pl",
-  "openingHours": ["Mo-Fr 08:00-20:00", "Sa 10:00-14:00"]
+  "openingHours": ["Mo 09:00-17:00", "Tu 11:00-17:00", "We 09:00-17:00", "Th 11:00-17:00", "Fr 09:00-15:00"]
 }
 </script>
 <style>
@@ -262,6 +262,10 @@
   .partner-note{margin-top:18px;font-size:12.5px;color:var(--muted);text-align:center;}
 
   /* ---------- testimonials ---------- */
+  .google-rating{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:10px 18px;border:1px solid var(--line);border-radius:999px;font-size:13.5px;color:var(--navy-800);text-decoration:none;transition:border-color .2s,box-shadow .2s;}
+  .google-rating:hover{border-color:#9aa6ba;box-shadow:0 4px 14px rgba(20,30,50,.08);}
+  .google-rating .stars-sm{color:#e0b400;letter-spacing:1px;font-size:13px;}
+  .google-rating b{color:var(--navy-900);}
   .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
   .testi-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);padding:28px 26px;display:flex;flex-direction:column;gap:16px;}
   .testi-card .stars{display:flex;gap:4px;color:var(--lime-ink);}
@@ -287,6 +291,7 @@
   .info-row .ic svg{width:18px;height:18px;color:var(--lime-400);}
   .info-row b{display:block;font-size:14.5px;margin-bottom:2px;}
   .info-row span, .info-row a{display:block;font-size:13.5px;color:var(--muted-dark);}
+  .info-row span.hours-note{margin-top:8px;color:var(--lime-400);font-weight:600;}
   .info-row a:hover{color:var(--lime-400);}
   .social-row{display:flex;gap:10px;margin-top:26px;}
   .social-row a{width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;}
@@ -644,23 +649,60 @@
         <span class="eyebrow">Opinie klientów</span>
         <h2>Zaufali nam już setki klientów</h2>
         <p>Sprawdź, co mówią o nas osoby, które skorzystały z naszego wsparcia.</p>
+        <a class="google-rating" href="https://www.google.com/maps/place/Expert+Financial/@53.1365373,17.6019858,17z/data=!4m8!3m7!1s0x4703a15f67ed2c0f:0x3c29488aca6cc0f0!8m2!3d53.1365373!4d17.6019858!9m1!1b1!16s%2Fg%2F11mkkt_b26" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.09A6.6 6.6 0 0 1 5.5 12c0-.73.13-1.43.34-2.09V7.07H2.18A11 11 0 0 0 1 12c0 1.77.43 3.45 1.18 4.93z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1a11 11 0 0 0-9.82 6.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          <span class="stars-sm">★★★★★</span>
+          <b>4,7</b> na podstawie 25 opinii w Google
+        </a>
       </div>
       <div class="testi-grid">
         <div class="testi-card reveal">
           <div class="stars">★★★★★</div>
-          <p class="quote">„Jestem pod wrażeniem profesjonalizmu i szybkości działania tej firmy. Wniosek o kredyt został rozpatrzony błyskawicznie, a warunki są bardzo korzystne. Polecam każdemu, kto szuka solidnego wsparcia finansowego!”</p>
+          <p class="quote">„Z czystym sumieniem polecam. Uzyskaliśmy kredyt hipoteczny bez żadnych problemów. Pełen profesjonalizm oraz maksymalne zaangażowanie Pana Bartłomieja pozwoliło nam na wzięcie kredytu na korzystnych warunkach.”</p>
           <div class="who">
-            <div class="avatar">ML</div>
-            <div><b>Marek Łazarski</b><span>Klient</span></div>
+            <div class="avatar">N</div>
+            <div><b>Natalia</b><span>Opinia z Google</span></div>
           </div>
         </div>
-        <div class="testi-card placeholder reveal">
-          <div class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.4-4 8-9 8-1.3 0-2.5-.2-3.6-.7L3 20l1.3-3.9C3.5 15 3 13.6 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/></svg></div>
-          <p>Miejsce na kolejną opinię klienta — uzupełnimy po zebraniu materiałów.</p>
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="quote">„Z całego serca polecam współpracę z tym pośrednikiem finansowym. Jestem bardzo zadowolona z całego procesu – wszystko przebiegło niezwykle sprawnie, szybko i w bardzo miłej atmosferze. Sprawa została załatwiona dosłownie w dwa dni.”</p>
+          <div class="who">
+            <div class="avatar">AC</div>
+            <div><b>Agnieszka Czerwińska</b><span>Opinia z Google</span></div>
+          </div>
         </div>
-        <div class="testi-card placeholder reveal">
-          <div class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.4-4 8-9 8-1.3 0-2.5-.2-3.6-.7L3 20l1.3-3.9C3.5 15 3 13.6 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/></svg></div>
-          <p>Miejsce na kolejną opinię klienta — uzupełnimy po zebraniu materiałów.</p>
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="quote">„Polecam tego pośrednika kredytowego. Policzyli mi raty w kilku bankach i nie musiałem już sprawdzać w każdym osobno. Po kilku odmowach kredytowych trafiłem do nich i żałuję, że tak późno. Miła obsługa i duża wiedza.”</p>
+          <div class="who">
+            <div class="avatar">OK</div>
+            <div><b>Oskar Kaliszewski</b><span>Opinia z Google</span></div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="quote">„Byłem przeliczyć ratę kredytu na mieszkanie i dostałem ofertę z kilku banków. Nic nie zapłaciłem — usługi są bezpłatne, to bardzo pozytywnie mnie zaskoczyło. Sprawnie poszło. Polecam Pana, który tam pracuje.”</p>
+          <div class="who">
+            <div class="avatar">W</div>
+            <div><b>Wolfu</b><span>Opinia z Google</span></div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="quote">„Dziękujemy bardzo Panu Bartłomiejowi za pomoc w zakupie wymarzonego samochodu :)”</p>
+          <div class="who">
+            <div class="avatar">KS</div>
+            <div><b>Kasia Stefaniak</b><span>Opinia z Google</span></div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="quote">„Polecam, jestem bardzo zadowolona. Na pewno skorzystam jeszcze raz przy kolejnej inwestycji.”</p>
+          <div class="who">
+            <div class="avatar">KK</div>
+            <div><b>Klaudia Kwiatkowska</b><span>Opinia z Google</span></div>
+          </div>
         </div>
       </div>
     </div>
@@ -694,7 +736,7 @@
           </div>
           <div class="info-row">
             <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
-            <div><b>Godziny otwarcia</b><span>Pon–Pt: 8:00–20:00</span><span>Sob: 10:00–14:00 · Niedz: zamknięte</span></div>
+            <div><b>Godziny otwarcia</b><span>Pon, Śr: 9:00–17:00</span><span>Wt, Czw: 11:00–17:00</span><span>Pt: 9:00–15:00</span><span>Sob–Niedz: zamknięte (w sob. dyżur telefoniczny)</span><span class="hours-note">Chcesz umówić się poza godzinami otwarcia biura? Zadzwoń!</span></div>
           </div>
 
           <div class="social-row">
