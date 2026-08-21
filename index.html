@@ -1,12 +1,1001 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Expert Financial</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Expert Financial — Kredyty, leasing i ubezpieczenia bez chaosu</title>
+<meta name="description" content="Expert Financial — porównujemy oferty kilkunastu banków i instytucji finansowych, żeby dobrać kredyt gotówkowy, hipoteczny, firmowy, leasing lub ubezpieczenie dopasowane do Ciebie. Odpowiedź w 15–30 minut." />
+<meta name="theme-color" content="#0b1526" />
+<meta property="og:title" content="Expert Financial — Zaufaj ekspertom finansowania" />
+<meta property="og:description" content="Kredyty gotówkowe, hipoteczne, firmowe, konsolidacyjne, leasing i ubezpieczenia — wszystko w jednym miejscu, online." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230b1526'/%3E%3Cpath d='M16 40 L27 28 L35 35 L48 20' stroke='%23cdeb52' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M40 20 H48 V28' stroke='%23cdeb52' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FinancialService",
+  "name": "Expert Financial",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rynek 2",
+    "addressLocality": "Nakło nad Notecią",
+    "addressCountry": "PL"
+  },
+  "telephone": ["+48690436069", "+48735936237"],
+  "url": "https://expert-financial.pl",
+  "openingHours": ["Mo-Fr 08:00-20:00", "Sa 10:00-14:00"]
+}
+</script>
+<style>
+  :root{
+    --navy-950:#070c17;
+    --navy-900:#0b1526;
+    --navy-800:#101f38;
+    --navy-700:#17294a;
+    --navy-600:#213862;
+    --lime-400:#cdeb52;
+    --lime-300:#e2f591;
+    --lime-ink:#28330a;
+    --ink:#0b1526;
+    --muted:#5b6b82;
+    --muted-dark:#aab4c9;
+    --paper:#f5f7fb;
+    --white:#ffffff;
+    --line:#e6e9f2;
+    --line-dark:#233151;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --radius-sm:12px;
+    --shadow-md:0 20px 40px -20px rgba(11,21,38,.25);
+    --shadow-lg:0 30px 60px -25px rgba(11,21,38,.35);
+    --container:1180px;
+    --ff-head:'Sora',system-ui,sans-serif;
+    --ff-body:'Inter',system-ui,sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important;}
+  }
+  body{
+    margin:0;
+    font-family:var(--ff-body);
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{font-family:var(--ff-head);margin:0;line-height:1.15;letter-spacing:-.01em;}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  button{font:inherit;cursor:pointer;}
+  ul{margin:0;padding:0;list-style:none;}
+  section{position:relative;}
+  .container{max-width:var(--container);margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--ff-body);font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--lime-ink);background:var(--lime-300);padding:7px 14px 7px 12px;border-radius:999px;
+  }
+  .eyebrow.on-dark{color:var(--navy-900);background:var(--lime-400);}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.6;}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:15px 26px;border-radius:999px;border:1px solid transparent;
+    font-weight:700;font-size:15px;white-space:nowrap;
+    transition:transform .18s ease, box-shadow .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--lime-400);color:var(--navy-900);box-shadow:0 12px 24px -10px rgba(205,235,82,.55);}
+  .btn-primary:hover{background:var(--lime-300);box-shadow:0 16px 30px -10px rgba(205,235,82,.7);}
+  .btn-ghost-dark{background:transparent;color:var(--white);border-color:rgba(255,255,255,.28);}
+  .btn-ghost-dark:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.06);}
+  .btn-ghost-light{background:transparent;color:var(--navy-900);border-color:var(--line);}
+  .btn-ghost-light:hover{border-color:var(--navy-900);}
+  .btn-block{width:100%;}
+  .btn-sm{padding:11px 18px;font-size:13.5px;}
+  .btn svg{width:18px;height:18px;flex:none;}
+
+  /* ---------- header ---------- */
+  #progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--lime-400),#8fd3ff);width:0%;z-index:1000;transition:width .1s linear;}
+  header.site{
+    position:sticky;top:0;z-index:900;
+    background:rgba(245,247,251,.75);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .25s ease, box-shadow .25s ease, background-color .25s ease;
+  }
+  header.site.scrolled{border-color:var(--line);box-shadow:0 8px 24px -18px rgba(11,21,38,.3);background:rgba(245,247,251,.92);}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;height:82px;gap:20px;}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--ff-head);font-weight:800;font-size:19px;color:var(--navy-900);}
+  .brand .mark{width:38px;height:38px;flex:none;}
+  .brand b{color:var(--navy-900);}
+  .brand span.accent{color:#6f8a17;}
+  nav.primary{display:flex;align-items:center;gap:2px;}
+  nav.primary a{padding:10px 15px;border-radius:999px;font-weight:600;font-size:14.5px;color:var(--navy-800);transition:background-color .18s ease,color .18s ease;}
+  nav.primary a:hover{background:var(--white);color:var(--navy-900);}
+  .header-cta{display:flex;align-items:center;gap:14px;}
+  .header-phone{display:flex;flex-direction:column;font-size:13px;color:var(--muted);text-align:right;}
+  .header-phone b{font-family:var(--ff-head);font-size:15px;color:var(--navy-900);}
+  .menu-toggle{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--white);align-items:center;justify-content:center;}
+  .menu-toggle svg{width:20px;height:20px;}
+
+  .mobile-panel{
+    position:fixed;inset:0;z-index:1200;background:var(--navy-950);
+    display:flex;flex-direction:column;padding:24px;
+    transform:translateY(-100%);transition:transform .3s ease;
+    overflow-y:auto;
+  }
+  .mobile-panel.open{transform:translateY(0);}
+  .mobile-panel .top{display:flex;justify-content:space-between;align-items:center;}
+  .mobile-panel nav{display:flex;flex-direction:column;gap:4px;margin-top:40px;}
+  .mobile-panel nav a{color:var(--white);font-family:var(--ff-head);font-size:26px;font-weight:700;padding:14px 4px;border-bottom:1px solid var(--line-dark);}
+  .mobile-panel .foot{margin-top:auto;display:flex;flex-direction:column;gap:14px;}
+  .close-btn{width:44px;height:44px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--white);display:flex;align-items:center;justify-content:center;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:radial-gradient(1100px 620px at 82% -10%, rgba(205,235,82,.16), transparent 60%),
+               radial-gradient(700px 500px at 8% 15%, rgba(111,166,255,.14), transparent 60%),
+               linear-gradient(180deg,var(--navy-950),var(--navy-900) 55%,var(--navy-900));
+    color:var(--white);
+    overflow:hidden;
+    padding:76px 0 96px;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(34px,4.6vw,56px);font-weight:800;margin:20px 0 22px;}
+  .hero h1 em{font-style:normal;color:var(--lime-400);}
+  .hero p.lead{font-size:clamp(16px,1.6vw,18.5px);color:var(--muted-dark);max-width:540px;margin-bottom:32px;}
+  .hero .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:44px;}
+  .trust-row{display:flex;flex-wrap:wrap;gap:26px 34px;}
+  .trust-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted-dark);font-weight:600;}
+  .trust-item svg{width:18px;height:18px;color:var(--lime-400);flex:none;}
+
+  .hero-visual{position:relative;}
+  .chart-card{
+    background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:var(--radius-lg);
+    padding:28px 26px 22px;
+    backdrop-filter:blur(6px);
+  }
+  .chart-card .head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;}
+  .chart-card .head p{color:var(--muted-dark);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;}
+  .chart-card .head h3{font-size:15px;color:var(--white);margin-top:6px;}
+  .chart-card .badge{background:rgba(205,235,82,.15);color:var(--lime-400);font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px;}
+  .chart-card svg.chart{width:100%;height:auto;display:block;}
+  .path-anim{stroke-dasharray:600;stroke-dashoffset:600;animation:draw 2.2s ease forwards .3s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  .calc-card{
+    position:relative;margin-top:-30px;margin-left:22px;margin-right:22px;
+    background:var(--white);color:var(--ink);
+    border-radius:var(--radius-md);
+    box-shadow:var(--shadow-lg);
+    padding:22px 24px 24px;
+  }
+  .calc-card h4{font-size:14.5px;font-weight:700;margin-bottom:2px;}
+  .calc-card .sub{font-size:12.5px;color:var(--muted);margin-bottom:16px;}
+  .calc-row{margin-bottom:16px;}
+  .calc-row .lbl{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:8px;}
+  .calc-row .lbl span:last-child{color:#4d6a12;}
+  input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:999px;
+    background:linear-gradient(90deg,var(--lime-400) var(--fill,50%),var(--line) var(--fill,50%));
+    outline:none;
+  }
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--navy-900);border:3px solid var(--lime-400);cursor:pointer;}
+  input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--navy-900);border:3px solid var(--lime-400);cursor:pointer;border:none;}
+  .calc-result{display:flex;align-items:baseline;justify-content:space-between;background:var(--paper);border-radius:14px;padding:14px 16px;margin-top:6px;}
+  .calc-result .num{font-family:var(--ff-head);font-size:26px;font-weight:800;color:var(--navy-900);}
+  .calc-result .num small{font-size:13px;font-weight:600;color:var(--muted);}
+  .calc-disclaimer{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5;}
+
+  /* ---------- sections generic ---------- */
+  .section{padding:96px 0;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head h2{font-size:clamp(26px,3.4vw,38px);margin:16px 0 14px;}
+  .section-head p{color:var(--muted);font-size:16px;}
+  .on-dark .section-head p{color:var(--muted-dark);}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- steps ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .step-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);padding:32px 28px;position:relative;}
+  .step-card .num{font-family:var(--ff-head);font-size:44px;font-weight:800;color:var(--lime-400);-webkit-text-stroke:1.5px var(--navy-900);color:transparent;}
+  .step-card h3{font-size:19px;margin:18px 0 10px;}
+  .step-card p{color:var(--muted);font-size:14.5px;}
+  .step-arrow{position:absolute;top:50%;right:-24px;transform:translateY(-50%);width:24px;height:2px;background:var(--line);display:block;}
+  .step-arrow::after{content:'';position:absolute;right:-1px;top:-4px;width:9px;height:9px;border-top:2px solid var(--line);border-right:2px solid var(--line);transform:rotate(45deg);}
+  .step-card:last-child .step-arrow{display:none;}
+
+  /* ---------- offer grid ---------- */
+  .offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .offer-card{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:30px 26px;display:flex;flex-direction:column;gap:14px;
+    transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .offer-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent;}
+  .offer-icon{width:52px;height:52px;border-radius:14px;background:var(--navy-900);display:flex;align-items:center;justify-content:center;}
+  .offer-icon svg{width:26px;height:26px;color:var(--lime-400);}
+  .offer-card h3{font-size:18.5px;}
+  .offer-card p{color:var(--muted);font-size:14.5px;flex:1;}
+  .offer-card .link{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:13.5px;color:var(--navy-900);margin-top:4px;}
+  .offer-card .link svg{width:15px;height:15px;transition:transform .18s ease;}
+  .offer-card:hover .link svg{transform:translateX(3px);}
+
+  /* ---------- why us ---------- */
+  .why-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center;}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:36px;}
+  .stat-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-sm);padding:22px 20px;}
+  .stat-box .n{font-family:var(--ff-head);font-size:34px;font-weight:800;color:var(--lime-400);}
+  .stat-box .l{font-size:13px;color:var(--muted-dark);margin-top:4px;}
+  .check-list{display:flex;flex-direction:column;gap:16px;}
+  .check-item{display:flex;gap:14px;align-items:flex-start;}
+  .check-item .ic{width:26px;height:26px;border-radius:50%;background:var(--lime-400);flex:none;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+  .check-item .ic svg{width:14px;height:14px;color:var(--navy-900);}
+  .check-item p{font-size:15px;color:var(--white);font-weight:500;}
+  .check-item span{display:block;font-size:13.5px;color:var(--muted-dark);margin-top:3px;font-weight:400;}
+
+  /* ---------- partners ---------- */
+  .partner-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+  .partner-pill{
+    height:74px;border:1px dashed var(--line);border-radius:var(--radius-sm);
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    color:var(--muted);font-weight:700;font-size:12.5px;letter-spacing:.03em;background:var(--white);
+  }
+  .partner-pill svg{width:18px;height:18px;color:#9aa6ba;}
+  .partner-note{margin-top:18px;font-size:12.5px;color:var(--muted);text-align:center;}
+
+  /* ---------- testimonials ---------- */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .testi-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);padding:28px 26px;display:flex;flex-direction:column;gap:16px;}
+  .testi-card .stars{display:flex;gap:4px;color:var(--lime-ink);}
+  .testi-card .stars svg{width:16px;height:16px;fill:#e0b400;color:#e0b400;}
+  .testi-card p.quote{font-size:14.5px;color:var(--navy-800);flex:1;}
+  .testi-card .who{display:flex;align-items:center;gap:12px;}
+  .avatar{width:42px;height:42px;border-radius:50%;background:var(--navy-900);color:var(--lime-400);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--ff-head);font-size:14px;flex:none;}
+  .who b{font-size:14px;display:block;}
+  .who span{font-size:12.5px;color:var(--muted);}
+  .testi-card.placeholder{border-style:dashed;color:var(--muted);align-items:center;justify-content:center;text-align:center;}
+  .testi-card.placeholder .ph-ic{width:40px;height:40px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;}
+  .testi-card.placeholder .ph-ic svg{width:20px;height:20px;color:#9aa6ba;}
+  .testi-card.placeholder p{font-size:13.5px;}
+
+  /* ---------- contact ---------- */
+  .contact-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:flex-start;}
+  .contact-info{background:var(--navy-900);color:var(--white);border-radius:var(--radius-lg);padding:36px 32px;position:sticky;top:106px;}
+  .contact-info h3{font-size:22px;margin-bottom:10px;}
+  .contact-info>p{color:var(--muted-dark);font-size:14.5px;margin-bottom:26px;}
+  .info-row{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line-dark);}
+  .info-row:first-of-type{border-top:none;}
+  .info-row .ic{width:38px;height:38px;border-radius:10px;background:rgba(205,235,82,.14);display:flex;align-items:center;justify-content:center;flex:none;}
+  .info-row .ic svg{width:18px;height:18px;color:var(--lime-400);}
+  .info-row b{display:block;font-size:14.5px;margin-bottom:2px;}
+  .info-row span, .info-row a{display:block;font-size:13.5px;color:var(--muted-dark);}
+  .info-row a:hover{color:var(--lime-400);}
+  .social-row{display:flex;gap:10px;margin-top:26px;}
+  .social-row a{width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;}
+  .social-row a:hover{background:rgba(255,255,255,.08);}
+  .social-row svg{width:17px;height:17px;}
+
+  .form-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);padding:38px;box-shadow:var(--shadow-md);}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .field{display:flex;flex-direction:column;gap:7px;margin-bottom:18px;}
+  .field.full{grid-column:1 / -1;}
+  .field label{font-size:13px;font-weight:700;color:var(--navy-800);}
+  .field label .opt{font-weight:400;color:var(--muted);}
+  .field input[type=text],.field input[type=email],.field input[type=tel],.field select,.field textarea{
+    border:1px solid var(--line);border-radius:12px;padding:13px 14px;font:inherit;font-size:14.5px;color:var(--ink);
+    background:var(--paper);transition:border-color .18s ease, box-shadow .18s ease;width:100%;
+  }
+  .field textarea{resize:vertical;min-height:110px;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--navy-700);box-shadow:0 0 0 4px rgba(23,41,74,.08);background:var(--white);}
+  .field select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b6b82' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:38px;}
+
+  .dropzone{
+    border:1.5px dashed var(--line);border-radius:14px;padding:22px;text-align:center;background:var(--paper);
+    display:flex;flex-direction:column;align-items:center;gap:8px;transition:border-color .18s ease, background-color .18s ease;cursor:pointer;
+  }
+  .dropzone.drag{border-color:var(--navy-800);background:#eef1f8;}
+  .dropzone svg{width:26px;height:26px;color:var(--muted);}
+  .dropzone b{font-size:13.5px;}
+  .dropzone span{font-size:12px;color:var(--muted);}
+  #file-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+  .file-chip{display:flex;align-items:center;gap:6px;background:var(--navy-900);color:var(--white);font-size:12px;font-weight:600;padding:6px 8px 6px 10px;border-radius:999px;}
+  .file-chip button{background:none;border:none;color:var(--muted-dark);width:16px;height:16px;display:flex;align-items:center;justify-content:center;padding:0;}
+  .file-chip button:hover{color:#fff;}
+
+  .consent-row{display:flex;gap:12px;align-items:flex-start;margin:6px 0 24px;}
+  .consent-row input{margin-top:3px;width:17px;height:17px;accent-color:var(--navy-900);flex:none;}
+  .consent-row label{font-size:12.5px;color:var(--muted);line-height:1.5;}
+  .form-foot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .response-hint{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:7px;}
+  .response-hint svg{width:15px;height:15px;color:#3f8f4a;flex:none;}
+  .form-success{display:none;align-items:center;gap:14px;background:#eef9ec;border:1px solid #cdebc2;color:#22521f;border-radius:14px;padding:16px 18px;font-size:14px;font-weight:600;margin-top:18px;}
+  .form-success.show{display:flex;}
+  .form-success svg{width:20px;height:20px;flex:none;}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{background:linear-gradient(120deg,var(--navy-950),var(--navy-800));border-radius:var(--radius-lg);padding:56px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;color:var(--white);}
+  .cta-band h2{font-size:clamp(22px,3vw,30px);max-width:480px;}
+  .cta-band p{color:var(--muted-dark);margin-top:10px;font-size:14.5px;}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy-950);color:var(--muted-dark);padding:72px 0 28px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:48px;border-bottom:1px solid var(--line-dark);}
+  .footer-brand .brand{color:var(--white);margin-bottom:14px;}
+  .footer-grid p.desc{font-size:13.5px;line-height:1.7;max-width:280px;}
+  .footer-col h4{color:var(--white);font-size:13.5px;margin-bottom:16px;letter-spacing:.04em;text-transform:uppercase;}
+  .footer-col ul{display:flex;flex-direction:column;gap:11px;}
+  .footer-col a{font-size:13.5px;transition:color .15s ease;}
+  .footer-col a:hover{color:var(--lime-400);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:12.5px;flex-wrap:wrap;gap:12px;}
+  .footer-bottom .legal a{margin-left:18px;}
+  .back-top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;background:var(--navy-900);color:var(--lime-400);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .25s ease, transform .25s ease;z-index:500;border:none;}
+  .back-top.show{opacity:1;pointer-events:auto;transform:none;}
+  .back-top svg{width:20px;height:20px;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1024px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{max-width:460px;}
+    .why-wrap{grid-template-columns:1fr;}
+    .contact-wrap{grid-template-columns:1fr;}
+    .contact-info{position:static;}
+    .partner-grid{grid-template-columns:repeat(3,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:860px){
+    nav.primary,.header-phone{display:none;}
+    .menu-toggle{display:flex;}
+    .steps,.offer-grid,.testi-grid{grid-template-columns:1fr;}
+    .step-arrow{display:none;}
+    .section{padding:64px 0;}
+    .form-grid{grid-template-columns:1fr;}
+    .cta-band{flex-direction:column;align-items:flex-start;}
+    .partner-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:520px){
+    .container{padding:0 18px;}
+    .hero{padding:50px 0 64px;}
+    .calc-card{margin-left:6px;margin-right:6px;}
+    .footer-grid{grid-template-columns:1fr;gap:32px;}
+  }
+</style>
 </head>
 <body>
-  <h1>Expert Financial</h1>
-  <p>Strona w budowie.</p>
+
+<div id="progress"></div>
+
+<header class="site" id="site-header">
+  <div class="container nav-row">
+    <a href="#top" class="brand">
+      <svg class="mark" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#0b1526"/><path d="M16 40 L27 28 L35 35 L48 20" stroke="#cdeb52" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 20 H48 V28" stroke="#cdeb52" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <b>Expert</b><span class="accent">&nbsp;Financial</span>
+    </a>
+    <nav class="primary">
+      <a href="#jak-dzialamy">Jak działamy</a>
+      <a href="#oferta">Oferta</a>
+      <a href="#dlaczego-my">Dlaczego my</a>
+      <a href="#opinie">Opinie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="header-cta">
+      <div class="header-phone">
+        <span>Zadzwoń do doradcy</span>
+        <b>+48 690 436 069</b>
+      </div>
+      <a href="#kontakt" class="btn btn-primary btn-sm">Bezpłatna konsultacja</a>
+      <button class="menu-toggle" id="menu-open" aria-label="Otwórz menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobile-panel">
+  <div class="top">
+    <a href="#top" class="brand" style="color:#fff;">
+      <svg class="mark" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#101f38"/><path d="M16 40 L27 28 L35 35 L48 20" stroke="#cdeb52" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 20 H48 V28" stroke="#cdeb52" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Expert Financial
+    </a>
+    <button class="close-btn" id="menu-close" aria-label="Zamknij menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav>
+    <a href="#jak-dzialamy">Jak działamy</a>
+    <a href="#oferta">Oferta</a>
+    <a href="#dlaczego-my">Dlaczego my</a>
+    <a href="#opinie">Opinie</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+  <div class="foot">
+    <a href="tel:+48690436069" class="btn btn-ghost-dark btn-block">+48 690 436 069</a>
+    <a href="#kontakt" class="btn btn-primary btn-block">Bezpłatna konsultacja</a>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow on-dark"><span class="dot"></span>Pośrednictwo finansowe nowej generacji</span>
+        <h1>Finansowanie, które ma sens.<br>Bez chaosu i <em>bez&nbsp;ukrytych&nbsp;kosztów</em>.</h1>
+        <p class="lead">Porównujemy oferty kilkunastu banków i instytucji finansowych, żeby dobrać rozwiązanie dopasowane do Twojej sytuacji — kredyt gotówkowy, hipoteczny, firmowy, leasing czy ubezpieczenie. Odpowiedź w 15–30 minut, całkowicie online.</p>
+        <div class="cta-row">
+          <a href="#kontakt" class="btn btn-primary">
+            Umów bezpłatną konsultację
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#oferta" class="btn btn-ghost-dark">Zobacz ofertę</a>
+        </div>
+        <div class="trust-row">
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Ponad 12 lat doświadczenia</div>
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Dostęp do ofert 20+ banków</div>
+          <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Zero formalności papierowych</div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="chart-card">
+          <div class="head">
+            <div>
+              <p>Symulacja zdolności</p>
+              <h3>Twoje możliwości finansowania</h3>
+            </div>
+            <span class="badge">+18% śr. w 24 mies.</span>
+          </div>
+          <svg class="chart" viewBox="0 0 320 120" fill="none">
+            <line x1="0" y1="100" x2="320" y2="100" stroke="rgba(255,255,255,.12)"/>
+            <line x1="0" y1="60" x2="320" y2="60" stroke="rgba(255,255,255,.08)"/>
+            <line x1="0" y1="20" x2="320" y2="20" stroke="rgba(255,255,255,.08)"/>
+            <path class="path-anim" d="M0 92 L45 78 L90 84 L135 55 L180 62 L225 34 L270 40 L320 12" stroke="#cdeb52" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="320" cy="12" r="5" fill="#cdeb52"/>
+          </svg>
+        </div>
+
+        <div class="calc-card">
+          <h4>Kalkulator raty — przykład</h4>
+          <p class="sub">Przesuń suwaki i zobacz orientacyjną wysokość raty</p>
+
+          <div class="calc-row">
+            <div class="lbl"><span>Kwota finansowania</span><span id="amount-out">60 000 zł</span></div>
+            <input type="range" id="amount" min="5000" max="300000" step="1000" value="60000" />
+          </div>
+          <div class="calc-row">
+            <div class="lbl"><span>Okres spłaty</span><span id="period-out">48 mies.</span></div>
+            <input type="range" id="period" min="6" max="120" step="6" value="48" />
+          </div>
+
+          <div class="calc-result">
+            <span style="font-size:13px;font-weight:600;color:var(--muted);">Rata już od</span>
+            <div class="num" id="rate-out">1 439 zł<small>&nbsp;/mies.</small></div>
+          </div>
+          <p class="calc-disclaimer">Wyliczenie ma charakter wyłącznie poglądowy i nie stanowi oferty w rozumieniu Kodeksu cywilnego. Ostateczne warunki finansowania ustala bank lub instytucja finansująca.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAK DZIAŁAMY -->
+  <section class="section" id="jak-dzialamy">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Prosty proces</span>
+        <h2>Jak działamy?</h2>
+        <p>Trzy kroki dzielą Cię od decyzji finansowej — całość załatwisz online, bez wychodzenia z domu.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card reveal">
+          <span class="num">01</span>
+          <h3>Wypełnij formularz</h3>
+          <p>Zajmuje 2 minuty. Opisz, czego potrzebujesz — kredytu, leasingu czy ubezpieczenia.</p>
+          <span class="step-arrow"></span>
+        </div>
+        <div class="step-card reveal">
+          <span class="num">02</span>
+          <h3>Rozmowa z doradcą</h3>
+          <p>Nasz ekspert analizuje Twoją sytuację i porównuje oferty dostępnych banków i instytucji.</p>
+          <span class="step-arrow"></span>
+        </div>
+        <div class="step-card reveal">
+          <span class="num">03</span>
+          <h3>Decyzja i realizacja</h3>
+          <p>Otrzymujesz najlepiej dopasowaną ofertę i finalizujesz formalności — szybko i bezstresowo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section class="section" id="oferta" style="background:var(--white);">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Nasza oferta</span>
+        <h2>Rozwiązania finansowe dopasowane do Ciebie</h2>
+        <p>Niezależnie od tego, czy potrzebujesz gotówki, chcesz kupić mieszkanie, rozwijać firmę czy zabezpieczyć majątek — mamy dla Ciebie ofertę.</p>
+      </div>
+      <div class="offer-grid">
+
+        <div class="offer-card reveal">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 6V4h12v2"/></svg></div>
+          <h3>Kredyty gotówkowe</h3>
+          <p>Szybka gotówka na dowolny cel — bez zaświadczeń i zbędnych formalności, decyzja nawet tego samego dnia.</p>
+          <a href="#kontakt" class="link" data-topic="Kredyt gotówkowy">Sprawdź ofertę <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="offer-card reveal">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></div>
+          <h3>Kredyty hipoteczne</h3>
+          <p>Finansowanie zakupu, budowy lub refinansowania nieruchomości — porównujemy oferty banków za Ciebie.</p>
+          <a href="#kontakt" class="link" data-topic="Kredyt hipoteczny">Sprawdź ofertę <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="offer-card reveal">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg></div>
+          <h3>Kredyty firmowe</h3>
+          <p>Kapitał obrotowy i inwestycyjny dla Twojego biznesu — finansowanie do 300 000 zł.</p>
+          <a href="#kontakt" class="link" data-topic="Kredyt firmowy">Sprawdź ofertę <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="offer-card reveal">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v6M3 6h8"/><path d="M17 15v6M13 18h8"/><path d="M6 21l12-18"/></svg></div>
+          <h3>Konsolidacja zobowiązań</h3>
+          <p>Połącz kilka rat w jedną, niższą — uporządkuj swoje finanse i odzyskaj spokój.</p>
+          <a href="#kontakt" class="link" data-topic="Konsolidacja">Sprawdź ofertę <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="offer-card reveal">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="14" height="7" rx="1"/><circle cx="7.5" cy="18.5" r="1.8"/><circle cx="15.5" cy="18.5" r="1.8"/><path d="M17 10l3 3v4h-3"/></svg></div>
+          <h3>Leasing</h3>
+          <p>Sfinansuj auto, maszyny lub sprzęt bez obciążania zdolności kredytowej firmy.</p>
+          <a href="#kontakt" class="link" data-topic="Leasing">Sprawdź ofertę <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="offer-card reveal">
+          <div class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/></svg></div>
+          <h3>Ubezpieczenia</h3>
+          <p>Ochrona majątku, zdrowia i spłaty zobowiązań — dopasowana do Twojej sytuacji życiowej.</p>
+          <a href="#kontakt" class="link" data-topic="Ubezpieczenie">Sprawdź ofertę <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DLACZEGO MY -->
+  <section class="section on-dark" id="dlaczego-my" style="background:linear-gradient(180deg,var(--navy-900),var(--navy-950));color:#fff;">
+    <div class="container why-wrap">
+      <div class="reveal">
+        <div class="stat-grid">
+          <div class="stat-box"><div class="n" data-count="12">0</div><div class="l">lat doświadczenia na rynku</div></div>
+          <div class="stat-box"><div class="n" data-count="3200">0</div><div class="l">obsłużonych klientów</div></div>
+          <div class="stat-box"><div class="n" data-count="20">0</div><div class="l">banków i instytucji partnerskich</div></div>
+          <div class="stat-box"><div class="n" data-count="98">0</div><div class="l">% klientów poleca nas dalej</div></div>
+        </div>
+        <p style="font-size:12px;color:var(--muted-dark);">* Wartości przykładowe do potwierdzenia i podmiany na docelowe dane firmy.</p>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow on-dark"><span class="dot"></span>Dlaczego Expert Financial</span>
+        <h2 style="margin:16px 0 24px;font-size:clamp(24px,3vw,32px);">Jeden kontakt. Cały rynek finansowy.</h2>
+        <div class="check-list">
+          <div class="check-item">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <p>Dostęp do ofert wielu banków w jednym miejscu<span>Nie musisz odwiedzać kilkunastu placówek — my porównujemy za Ciebie.</span></p>
+          </div>
+          <div class="check-item">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <p>Proces całkowicie online<span>Formularz, rozmowa i dokumenty — wszystko zdalnie, bez wychodzenia z domu.</span></p>
+          </div>
+          <div class="check-item">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <p>Brak ukrytych kosztów<span>Nasze doradztwo jest przejrzyste — znasz warunki, zanim podejmiesz decyzję.</span></p>
+          </div>
+          <div class="check-item">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <p>Wsparcie także w trudniejszych sytuacjach<span>Pomagamy również osobom z historią kredytową wymagającą indywidualnego podejścia.</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERZY -->
+  <section class="section" style="padding-top:72px;padding-bottom:72px;">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Zaufanie</span>
+        <h2 style="font-size:26px;">Współpracujemy z wiodącymi instytucjami finansowymi w Polsce</h2>
+      </div>
+      <div class="partner-grid reveal">
+        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 01</div>
+        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 02</div>
+        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 03</div>
+        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 04</div>
+        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 05</div>
+        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 06</div>
+      </div>
+      <p class="partner-note">Miejsce na docelowe logotypy banków i instytucji partnerskich — podmienimy po przekazaniu materiałów.</p>
+    </div>
+  </section>
+
+  <!-- OPINIE -->
+  <section class="section" id="opinie" style="background:var(--white);">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Opinie klientów</span>
+        <h2>Zaufali nam już setki klientów</h2>
+        <p>Sprawdź, co mówią o nas osoby, które skorzystały z naszego wsparcia.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="quote">„Jestem pod wrażeniem profesjonalizmu i szybkości działania tej firmy. Wniosek o kredyt został rozpatrzony błyskawicznie, a warunki są bardzo korzystne. Polecam każdemu, kto szuka solidnego wsparcia finansowego!”</p>
+          <div class="who">
+            <div class="avatar">ML</div>
+            <div><b>Marek Łazarski</b><span>Klient</span></div>
+          </div>
+        </div>
+        <div class="testi-card placeholder reveal">
+          <div class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.4-4 8-9 8-1.3 0-2.5-.2-3.6-.7L3 20l1.3-3.9C3.5 15 3 13.6 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/></svg></div>
+          <p>Miejsce na kolejną opinię klienta — uzupełnimy po zebraniu materiałów.</p>
+        </div>
+        <div class="testi-card placeholder reveal">
+          <div class="ph-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.4-4 8-9 8-1.3 0-2.5-.2-3.6-.7L3 20l1.3-3.9C3.5 15 3 13.6 3 12c0-4.4 4-8 9-8s9 3.6 9 8z"/></svg></div>
+          <p>Miejsce na kolejną opinię klienta — uzupełnimy po zebraniu materiałów.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section class="section" id="kontakt">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Kontakt</span>
+        <h2>Porozmawiajmy o Twoich finansach</h2>
+        <p>Wypełnij formularz — odezwiemy się w ciągu 15–30 minut w godzinach pracy biura.</p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="contact-info reveal">
+          <h3>Expert Financial</h3>
+          <p>Doradztwo finansowe z ludzką twarzą — porozmawiajmy o tym, co da się dziś zrobić dla Twojego budżetu.</p>
+
+          <div class="info-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div><b>Adres biura</b><span>Rynek 2, Nakło nad Notecią</span></div>
+          </div>
+          <div class="info-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 3a2 2 0 0 1-.5 2L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2-.5c1 .4 2 .6 3 .7a2 2 0 0 1 1.7 2z"/></svg></span>
+            <div><b>Telefon</b><a href="tel:+48690436069">+48 690 436 069</a><a href="tel:+48735936237">+48 735 936 237</a></div>
+          </div>
+          <div class="info-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <div><b>E-mail</b><a href="mailto:kontakt@expert-financial.pl">kontakt@expert-financial.pl</a></div>
+          </div>
+          <div class="info-row">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+            <div><b>Godziny otwarcia</b><span>Pon–Pt: 8:00–20:00</span><span>Sob: 10:00–14:00 · Niedz: zamknięte</span></div>
+          </div>
+
+          <div class="social-row">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9v12M10 13a4 4 0 0 1 8 0v8"/></svg></a>
+          </div>
+        </div>
+
+        <form class="form-card reveal" id="contact-form" novalidate>
+          <div class="form-grid">
+            <div class="field full">
+              <label for="topic">Temat zapytania</label>
+              <select id="topic" name="topic">
+                <option>Kredyt gotówkowy</option>
+                <option>Kredyt hipoteczny</option>
+                <option>Kredyt firmowy</option>
+                <option>Konsolidacja</option>
+                <option>Leasing</option>
+                <option>Ubezpieczenie</option>
+                <option>Inne</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="first-name">Imię</label>
+              <input type="text" id="first-name" name="first-name" placeholder="Jan" required />
+            </div>
+            <div class="field">
+              <label for="last-name">Nazwisko</label>
+              <input type="text" id="last-name" name="last-name" placeholder="Kowalski" required />
+            </div>
+            <div class="field">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="jan.kowalski@email.pl" required />
+            </div>
+            <div class="field">
+              <label for="phone">Numer telefonu</label>
+              <input type="tel" id="phone" name="phone" placeholder="+48 600 000 000" required />
+            </div>
+            <div class="field full">
+              <label for="message">Wiadomość</label>
+              <textarea id="message" name="message" placeholder="Opisz krótko, czego potrzebujesz..."></textarea>
+            </div>
+            <div class="field full">
+              <label>Załączniki <span class="opt">(np. zaświadczenie o dochodach, opcjonalnie)</span></label>
+              <div class="dropzone" id="dropzone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+                <b>Przeciągnij pliki tutaj lub kliknij, aby wybrać</b>
+                <span>PDF, JPG, PNG — maks. 10&nbsp;MB na plik</span>
+                <input type="file" id="file-input" multiple hidden accept=".pdf,.jpg,.jpeg,.png" />
+              </div>
+              <div id="file-list"></div>
+            </div>
+          </div>
+
+          <div class="consent-row">
+            <input type="checkbox" id="consent" required />
+            <label for="consent">Wyrażam zgodę na przetwarzanie moich danych osobowych przez Expert Financial w celu obsługi zapytania, zgodnie z Polityką prywatności.</label>
+          </div>
+
+          <div class="form-foot">
+            <button type="submit" class="btn btn-primary">
+              Wyślij zapytanie
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <span class="response-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Odpowiadamy w 15–30 minut w godzinach pracy</span>
+          </div>
+
+          <div class="form-success" id="form-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            <span>Dziękujemy! To wersja demonstracyjna formularza — po podłączeniu docelowej platformy wysyłkowej zgłoszenia będą trafiać bezpośrednio do zespołu.</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div>
+          <h2>Gotowy, żeby uporządkować swoje finanse?</h2>
+          <p>Bez zobowiązań, bez opłat wstępnych — porozmawiajmy o możliwościach.</p>
+        </div>
+        <a href="#kontakt" class="btn btn-primary">Napisz do nas teraz</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#top" class="brand">
+          <svg class="mark" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" fill="#101f38"/><path d="M16 40 L27 28 L35 35 L48 20" stroke="#cdeb52" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 20 H48 V28" stroke="#cdeb52" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Expert Financial
+        </a>
+        <p class="desc">Doradztwo kredytowe i ubezpieczeniowe — porównujemy oferty rynku, żeby dobrać rozwiązanie dopasowane do Twojej sytuacji.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Nawigacja</h4>
+        <ul>
+          <li><a href="#jak-dzialamy">Jak działamy</a></li>
+          <li><a href="#oferta">Oferta</a></li>
+          <li><a href="#dlaczego-my">Dlaczego my</a></li>
+          <li><a href="#opinie">Opinie</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Oferta</h4>
+        <ul>
+          <li><a href="#oferta">Kredyty gotówkowe</a></li>
+          <li><a href="#oferta">Kredyty hipoteczne</a></li>
+          <li><a href="#oferta">Kredyty firmowe</a></li>
+          <li><a href="#oferta">Leasing i ubezpieczenia</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li>Rynek 2, Nakło nad Notecią</li>
+          <li><a href="tel:+48690436069">+48 690 436 069</a></li>
+          <li><a href="mailto:kontakt@expert-financial.pl">kontakt@expert-financial.pl</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Expert Financial. Wszelkie prawa zastrzeżone.</span>
+      <span class="legal"><a href="#">Polityka prywatności</a><a href="#">Regulamin</a></span>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="back-top" aria-label="Wróć na górę">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+  "use strict";
+
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // header scroll state + progress bar
+  var header = document.getElementById('site-header');
+  var progress = document.getElementById('progress');
+  var backTop = document.getElementById('back-top');
+  function onScroll(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    header.classList.toggle('scrolled', y > 12);
+    backTop.classList.toggle('show', y > 500);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+  }
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  backTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+
+  // mobile menu
+  var panel = document.getElementById('mobile-panel');
+  document.getElementById('menu-open').addEventListener('click', function(){ panel.classList.add('open'); document.body.style.overflow='hidden'; });
+  document.getElementById('menu-close').addEventListener('click', closePanel);
+  panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closePanel); });
+  function closePanel(){ panel.classList.remove('open'); document.body.style.overflow=''; }
+
+  // reveal on scroll
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // animated stat counters
+  var counters = document.querySelectorAll('.n[data-count]');
+  function animateCounter(el){
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var start = 0, dur = 1400, t0 = null;
+    function step(ts){
+      if(!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(start + (target - start) * eased).toLocaleString('pl-PL');
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ animateCounter(e.target); io2.unobserve(e.target); }
+      });
+    }, {threshold:.4});
+    counters.forEach(function(el){ io2.observe(el); });
+  } else {
+    counters.forEach(animateCounter);
+  }
+
+  // loan calculator
+  var amount = document.getElementById('amount');
+  var period = document.getElementById('period');
+  var amountOut = document.getElementById('amount-out');
+  var periodOut = document.getElementById('period-out');
+  var rateOut = document.getElementById('rate-out');
+
+  function fmtPLN(n){ return n.toLocaleString('pl-PL') + ' zł'; }
+  function fillRange(el){
+    var min = parseFloat(el.min), max = parseFloat(el.max), val = parseFloat(el.value);
+    var pct = ((val - min) / (max - min)) * 100;
+    el.style.setProperty('--fill', pct + '%');
+  }
+  function calc(){
+    var a = parseFloat(amount.value);
+    var p = parseFloat(period.value);
+    amountOut.textContent = fmtPLN(a);
+    periodOut.textContent = p + ' mies.';
+    // illustrative simple estimate (annuity-like), not a real financial offer
+    var monthlyRate = 0.0079;
+    var rate = (a * monthlyRate * Math.pow(1 + monthlyRate, p)) / (Math.pow(1 + monthlyRate, p) - 1);
+    rateOut.innerHTML = Math.round(rate).toLocaleString('pl-PL') + ' zł<small>&nbsp;/mies.</small>';
+    fillRange(amount);
+    fillRange(period);
+  }
+  amount.addEventListener('input', calc);
+  period.addEventListener('input', calc);
+  calc();
+
+  // topic prefill from offer cards
+  document.querySelectorAll('a[data-topic]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var sel = document.getElementById('topic');
+      var val = a.getAttribute('data-topic');
+      for(var i=0;i<sel.options.length;i++){
+        if(sel.options[i].text.indexOf(val) !== -1){ sel.selectedIndex = i; break; }
+      }
+    });
+  });
+
+  // file dropzone
+  var dropzone = document.getElementById('dropzone');
+  var fileInput = document.getElementById('file-input');
+  var fileList = document.getElementById('file-list');
+  var files = [];
+
+  dropzone.addEventListener('click', function(){ fileInput.click(); });
+  dropzone.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ fileInput.click(); } });
+  dropzone.setAttribute('tabindex','0');
+  dropzone.setAttribute('role','button');
+
+  ['dragenter','dragover'].forEach(function(evt){
+    dropzone.addEventListener(evt, function(e){ e.preventDefault(); dropzone.classList.add('drag'); });
+  });
+  ['dragleave','drop'].forEach(function(evt){
+    dropzone.addEventListener(evt, function(e){ e.preventDefault(); dropzone.classList.remove('drag'); });
+  });
+  dropzone.addEventListener('drop', function(e){
+    addFiles(e.dataTransfer.files);
+  });
+  fileInput.addEventListener('change', function(){ addFiles(fileInput.files); fileInput.value = ''; });
+
+  function addFiles(list){
+    Array.prototype.forEach.call(list, function(f){ files.push(f); });
+    renderFiles();
+  }
+  function renderFiles(){
+    fileList.innerHTML = '';
+    files.forEach(function(f, idx){
+      var chip = document.createElement('div');
+      chip.className = 'file-chip';
+      var name = f.name.length > 22 ? f.name.slice(0,19) + '…' : f.name;
+      chip.innerHTML = '<span>' + name + '</span>';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('aria-label','Usuń plik');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+      btn.addEventListener('click', function(){ files.splice(idx,1); renderFiles(); });
+      chip.appendChild(btn);
+      fileList.appendChild(chip);
+    });
+  }
+
+  // form submit (demo — backend wpięcie po podaniu danych platformy)
+  var form = document.getElementById('contact-form');
+  var success = document.getElementById('form-success');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    success.classList.add('show');
+    success.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+})();
+</script>
+
 </body>
 </html>
