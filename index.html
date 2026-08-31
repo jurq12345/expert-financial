@@ -151,7 +151,8 @@
     overflow:hidden;
     padding:76px 0 96px;
   }
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center;}
+  .hero-grid>*{min-width:0;}
   .hero h1{font-size:clamp(34px,4.6vw,56px);font-weight:800;margin:20px 0 22px;}
   .hero h1 em{font-style:normal;color:var(--lime-400);}
   .hero p.lead{font-size:clamp(16px,1.6vw,18.5px);color:var(--muted-dark);max-width:540px;margin-bottom:32px;}
@@ -360,7 +361,7 @@
 
   /* ---------- responsive ---------- */
   @media (max-width:1024px){
-    .hero-grid{grid-template-columns:1fr;}
+    .hero-grid{grid-template-columns:minmax(0,1fr);}
     .hero-visual{max-width:460px;}
     .why-wrap{grid-template-columns:1fr;}
     .contact-wrap{grid-template-columns:1fr;}
@@ -447,7 +448,7 @@
     <div class="container hero-grid">
       <div>
         <span class="eyebrow on-dark"><span class="dot"></span>Pośrednictwo finansowe nowej generacji</span>
-        <h1>Finansowanie, które ma sens.<br>Bez chaosu i <em>bez&nbsp;ukrytych&nbsp;kosztów</em>.</h1>
+        <h1>Finansowanie, które ma sens.<br>Bez chaosu i <em>bez ukrytych kosztów</em>.</h1>
         <p class="lead">Porównujemy oferty kilkunastu banków i instytucji finansowych, żeby dobrać rozwiązanie dopasowane do Twojej sytuacji — kredyt gotówkowy, hipoteczny, firmowy, leasing czy ubezpieczenie. Odpowiedź w 15–30 minut, całkowicie online.</p>
         <div class="cta-row">
           <a href="#kontakt" class="btn btn-primary">
@@ -754,6 +755,7 @@
         </div>
 
         <form class="form-card reveal" id="contact-form" novalidate>
+          <input type="text" name="website" id="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" aria-hidden="true" />
           <div class="form-grid">
             <div class="field full">
               <label for="topic">Temat zapytania</label>
@@ -792,7 +794,7 @@
               <div class="dropzone" id="dropzone">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
                 <b>Przeciągnij pliki tutaj lub kliknij, aby wybrać</b>
-                <span>PDF, JPG, PNG — maks. 10&nbsp;MB na plik</span>
+                <span>PDF, JPG, PNG — maks. 5 plików, łącznie do 8&nbsp;MB</span>
                 <input type="file" id="file-input" multiple hidden accept=".pdf,.jpg,.jpeg,.png" />
               </div>
               <div id="file-list"></div>
@@ -814,7 +816,11 @@
 
           <div class="form-success" id="form-success">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4L12 14.01l-3-3"/></svg>
-            <span>Dziękujemy! To wersja demonstracyjna formularza — po podłączeniu docelowej platformy wysyłkowej zgłoszenia będą trafiać bezpośrednio do zespołu.</span>
+            <span>Dziękujemy! Twoje zgłoszenie zostało wysłane. Odezwiemy się w ciągu 15–30 minut w godzinach pracy biura.</span>
+          </div>
+          <div class="form-success" id="form-error" style="background:#fdecec;border-color:#f3c6c6;color:#7a1f1f;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+            <span id="form-error-text">Nie udało się wysłać formularza. Spróbuj ponownie lub zadzwoń do nas.</span>
           </div>
         </form>
       </div>
@@ -1073,6 +1079,8 @@
   var fileInput = document.getElementById('file-input');
   var fileList = document.getElementById('file-list');
   var files = [];
+  var MAX_FILES = 5;
+  var MAX_TOTAL_BYTES = 8 * 1024 * 1024;
 
   dropzone.addEventListener('click', function(){ fileInput.click(); });
   dropzone.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ fileInput.click(); } });
@@ -1092,6 +1100,17 @@
 
   function addFiles(list){
     Array.prototype.forEach.call(list, function(f){ files.push(f); });
+    if(files.length > MAX_FILES){
+      alert('Możesz dołączyć maksymalnie ' + MAX_FILES + ' plików.');
+      files = files.slice(0, MAX_FILES);
+    }
+    var total = files.reduce(function(sum, f){ return sum + f.size; }, 0);
+    if(total > MAX_TOTAL_BYTES){
+      alert('Łączny rozmiar załączników przekracza 8 MB. Usuń niektóre pliki.');
+      while(files.length && files.reduce(function(sum, f){ return sum + f.size; }, 0) > MAX_TOTAL_BYTES){
+        files.pop();
+      }
+    }
     renderFiles();
   }
   function renderFiles(){
@@ -1111,14 +1130,47 @@
     });
   }
 
-  // form submit (demo — backend wpięcie po podaniu danych platformy)
+  // form submit
   var form = document.getElementById('contact-form');
   var success = document.getElementById('form-success');
+  var errorBox = document.getElementById('form-error');
+  var submitBtn = form.querySelector('button[type="submit"]');
+  var submitBtnHTML = submitBtn.innerHTML;
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     if(!form.checkValidity()){ form.reportValidity(); return; }
-    success.classList.add('show');
-    success.scrollIntoView({behavior:'smooth', block:'center'});
+
+    success.classList.remove('show');
+    errorBox.classList.remove('show');
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Wysyłanie…';
+
+    var fd = new FormData(form);
+    files.forEach(function(f){ fd.append('attachment', f); });
+
+    fetch('/api/contact', { method: 'POST', body: fd })
+      .then(function(res){
+        return res.json().catch(function(){ return {}; }).then(function(data){
+          return { ok: res.ok && data.ok, data: data };
+        });
+      })
+      .then(function(result){
+        if(!result.ok){ throw new Error((result.data && result.data.error) || 'send_failed'); }
+        success.classList.add('show');
+        success.scrollIntoView({behavior:'smooth', block:'center'});
+        form.reset();
+        files = [];
+        renderFiles();
+      })
+      .catch(function(){
+        errorBox.classList.add('show');
+        errorBox.scrollIntoView({behavior:'smooth', block:'center'});
+      })
+      .finally(function(){
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = submitBtnHTML;
+      });
   });
 
 })();

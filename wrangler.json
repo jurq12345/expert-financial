@@ -1,7 +1,9 @@
 {
   "name": "expert-financial",
   "compatibility_date": "2026-08-21",
+  "main": "worker.js",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "binding": "ASSETS"
   }
 }
