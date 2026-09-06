@@ -9,6 +9,7 @@
 <meta property="og:title" content="Expert Financial — Zaufaj ekspertom finansowania" />
 <meta property="og:description" content="Kredyty gotówkowe, hipoteczne, firmowe, konsolidacyjne, leasing i ubezpieczenia — wszystko w jednym miejscu, online." />
 <meta property="og:type" content="website" />
+<link rel="canonical" href="https://expert-financial.pl/" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230b1526'/%3E%3Cpath d='M16 40 L27 28 L35 35 L48 20' stroke='%23cdeb52' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M40 20 H48 V28' stroke='%23cdeb52' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -258,11 +259,12 @@
   /* ---------- partners ---------- */
   .partner-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
   .partner-pill{
-    height:74px;border:1px dashed var(--line);border-radius:var(--radius-sm);
-    display:flex;align-items:center;justify-content:center;gap:8px;
-    color:var(--muted);font-weight:700;font-size:12.5px;letter-spacing:.03em;background:var(--white);
+    height:74px;border:1px solid var(--line);border-radius:var(--radius-sm);
+    display:flex;align-items:center;justify-content:center;padding:14px 18px;
+    background:var(--white);
   }
-  .partner-pill svg{width:18px;height:18px;color:#9aa6ba;}
+  .partner-pill img{max-width:100%;max-height:32px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.65;transition:filter .2s ease,opacity .2s ease;}
+  .partner-pill:hover img{filter:grayscale(0);opacity:1;}
   .partner-note{margin-top:18px;font-size:12.5px;color:var(--muted);text-align:center;}
 
   /* ---------- testimonials ---------- */
@@ -639,14 +641,14 @@
         <h2 style="font-size:26px;">Współpracujemy z wiodącymi instytucjami finansowymi w Polsce</h2>
       </div>
       <div class="partner-grid reveal">
-        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 01</div>
-        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 02</div>
-        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 03</div>
-        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 04</div>
-        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 05</div>
-        <div class="partner-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="10" width="18" height="9" rx="1"/><path d="M3 10l9-6 9 6"/></svg>Bank 06</div>
+        <div class="partner-pill"><img src="assets/banks/pko-bp.svg" alt="PKO Bank Polski" loading="lazy" width="140" height="32"></div>
+        <div class="partner-pill"><img src="assets/banks/pekao.svg" alt="Bank Pekao S.A." loading="lazy" width="140" height="32"></div>
+        <div class="partner-pill"><img src="assets/banks/mbank.svg" alt="mBank" loading="lazy" width="140" height="32"></div>
+        <div class="partner-pill"><img src="assets/banks/millennium.svg" alt="Bank Millennium" loading="lazy" width="140" height="32"></div>
+        <div class="partner-pill"><img src="assets/banks/alior.svg" alt="Alior Bank" loading="lazy" width="140" height="32"></div>
+        <div class="partner-pill"><img src="assets/banks/erste.svg" alt="Erste Bank" loading="lazy" width="140" height="32"></div>
       </div>
-      <p class="partner-note">Miejsce na docelowe logotypy banków i instytucji partnerskich — podmienimy po przekazaniu materiałów.</p>
+      <p class="partner-note">Oraz kilkanaście innych banków i instytucji finansowych — pełną listę przedstawiamy podczas rozmowy.</p>
     </div>
   </section>
 

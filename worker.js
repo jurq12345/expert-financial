@@ -7,9 +7,33 @@ const RESEND_API_URL = "https://api.resend.com/emails";
 const MAX_TOTAL_ATTACHMENT_BYTES = 8 * 1024 * 1024;
 const MAX_FILES = 5;
 
+// Leftover URLs from the old WordPress site that Google still has crawled and
+// is flagging as 404s in Search Console. Redirect them instead of 404ing so
+// any inbound links/link equity land on the current homepage.
+const LEGACY_REDIRECTS = new Set([
+  "/o-nas",
+  "/o-nas/",
+  "/blog",
+  "/blog/",
+  "/category/dlugi",
+  "/category/dlugi/",
+  "/kredyt-gotowkowy-kiedy-warto-go-wziac",
+  "/kredyt-gotowkowy-kiedy-warto-go-wziac/",
+]);
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (url.protocol === "http:") {
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
+
+    if (LEGACY_REDIRECTS.has(url.pathname)) {
+      return Response.redirect(`${url.origin}/`, 301);
+    }
+
     if (request.method === "POST" && url.pathname === "/api/contact") {
       return handleContact(request, env);
     }
