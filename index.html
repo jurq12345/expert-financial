@@ -229,6 +229,7 @@
 
   /* ---------- sections generic ---------- */
   .section{padding:96px 0;}
+  section[id]{scroll-margin-top:96px;}
   .section-head{max-width:640px;margin-bottom:56px;}
   .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
   .section-head h2{font-size:clamp(26px,3.4vw,38px);margin:16px 0 14px;}
@@ -524,7 +525,7 @@
 
           <div class="calc-result">
             <span style="font-size:13px;font-weight:600;color:var(--muted);">Rata już od</span>
-            <div class="num" id="rate-out">1 439 zł<small>&nbsp;/mies.</small></div>
+            <div class="num" id="rate-out">1 507 zł<small>&nbsp;/mies.</small></div>
           </div>
           <p class="calc-disclaimer">Wyliczenie ma charakter wyłącznie poglądowy i nie stanowi oferty w rozumieniu Kodeksu cywilnego. Ostateczne warunki finansowania ustala bank lub instytucja finansująca.</p>
         </div>
@@ -943,14 +944,15 @@
   panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closePanel); });
   function closePanel(){ panel.classList.remove('open'); document.body.style.overflow=''; }
 
-  // remove the #hash from the URL after jumping to an in-page section
+  // smooth-scroll in-page anchor links ourselves so the URL never picks up a #hash
   document.querySelectorAll('a[href^="#"]').forEach(function(a){
     var id = a.getAttribute('href').slice(1);
-    if(!id || !document.getElementById(id)) return;
-    a.addEventListener('click', function(){
-      setTimeout(function(){
-        history.replaceState(null, '', location.pathname + location.search);
-      }, 0);
+    var target = id && document.getElementById(id);
+    if(!target) return;
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+      history.replaceState(null, '', location.pathname + location.search);
     });
   });
 
@@ -1159,7 +1161,11 @@
       btn.type = 'button';
       btn.setAttribute('aria-label','Usuń plik');
       btn.innerHTML = '<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
-      btn.addEventListener('click', function(){ files.splice(idx,1); renderFiles(); });
+      btn.addEventListener('click', function(){
+        var i = Array.prototype.indexOf.call(fileList.children, chip);
+        if(i > -1) files.splice(i,1);
+        renderFiles();
+      });
       chip.appendChild(btn);
       fileList.appendChild(chip);
     });
