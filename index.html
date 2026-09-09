@@ -921,6 +921,17 @@
   panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closePanel); });
   function closePanel(){ panel.classList.remove('open'); document.body.style.overflow=''; }
 
+  // remove the #hash from the URL after jumping to an in-page section
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    if(!id || !document.getElementById(id)) return;
+    a.addEventListener('click', function(){
+      setTimeout(function(){
+        history.replaceState(null, '', location.pathname + location.search);
+      }, 0);
+    });
+  });
+
   // reveal on scroll
   var revealEls = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
