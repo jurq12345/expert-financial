@@ -20,7 +20,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230b1526'/%3E%3Cpath d='M16 40 L27 28 L35 35 L48 20' stroke='%23cdeb52' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M40 20 H48 V28' stroke='%23cdeb52' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -76,8 +76,11 @@
     --shadow-lg:0 30px 60px -25px rgba(11,21,38,.35);
     --container:1180px;
     --ff-head:'Sora',system-ui,sans-serif;
-    --ff-body:'Inter',system-ui,sans-serif;
+    --ff-body:'Manrope',system-ui,sans-serif;
+    --ff-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+    --ease-spring:cubic-bezier(.16,1,.3,1);
   }
+  .mono{font-family:var(--ff-mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
 
   *,*::before,*::after{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -111,14 +114,18 @@
 
   /* ---------- buttons ---------- */
   .btn{
+    position:relative;overflow:hidden;
     display:inline-flex;align-items:center;justify-content:center;gap:10px;
     padding:15px 26px;border-radius:999px;border:1px solid transparent;
     font-weight:700;font-size:15px;white-space:nowrap;
-    transition:transform .18s ease, box-shadow .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
+    transition:transform .18s var(--ease-spring), box-shadow .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
   }
+  .btn::before{content:'';position:absolute;inset:0;background:radial-gradient(90px 90px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.4), transparent 70%);opacity:0;transition:opacity .3s ease;pointer-events:none;}
+  .btn:hover::before{opacity:1;}
+  .btn>*{position:relative;}
   .btn:active{transform:scale(.97);}
   .btn-primary{background:var(--lime-400);color:var(--navy-900);box-shadow:0 12px 24px -10px rgba(205,235,82,.55);}
-  .btn-primary:hover{background:var(--lime-300);box-shadow:0 16px 30px -10px rgba(205,235,82,.7);}
+  .btn-primary:hover{background:var(--lime-300);box-shadow:0 16px 30px -10px rgba(205,235,82,.7);transform:translateY(-2px);}
   .btn-ghost-dark{background:transparent;color:var(--white);border-color:rgba(255,255,255,.28);}
   .btn-ghost-dark:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.06);}
   .btn-ghost-light{background:transparent;color:var(--navy-900);border-color:var(--line);}
@@ -174,9 +181,9 @@
     overflow:hidden;
     padding:76px 0 96px;
   }
-  .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center;}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center;}
   .hero-grid>*{min-width:0;}
-  .hero h1{font-size:clamp(34px,4.6vw,56px);font-weight:800;margin:20px 0 22px;}
+  .hero h1{font-size:clamp(34px,4.6vw,58px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:20px 0 22px;}
   .hero h1 em{font-style:normal;color:var(--lime-400);}
   .hero p.lead{font-size:clamp(16px,1.6vw,18.5px);color:var(--muted-dark);max-width:540px;margin-bottom:32px;}
   .hero .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:44px;}
@@ -192,7 +199,19 @@
     border-radius:var(--radius-md);
     box-shadow:var(--shadow-lg);
     padding:22px 24px 24px;
+    transform:rotate(-1.2deg);
   }
+  .hero-badge{
+    position:absolute;top:-18px;right:2px;z-index:2;
+    display:flex;align-items:center;gap:9px;
+    background:var(--navy-900);color:var(--white);border-radius:999px;
+    padding:10px 16px 10px 12px;box-shadow:var(--shadow-md);
+    font-size:12.5px;font-weight:700;
+    animation:float-y 5.5s ease-in-out infinite;
+  }
+  .hero-badge .pulse-dot{position:relative;width:9px;height:9px;border-radius:50%;background:var(--lime-400);flex:none;}
+  .hero-badge .pulse-dot::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1.5px solid var(--lime-400);animation:breathe 2.4s ease-in-out infinite;}
+  @media (max-width:520px){ .hero-badge{display:none;} }
   .calc-card h4{font-size:14.5px;font-weight:700;margin-bottom:2px;}
   .calc-card .sub{font-size:12.5px;color:var(--muted);margin-bottom:16px;}
   .calc-row{margin-bottom:16px;}
@@ -208,7 +227,7 @@
   .calc-row .lbl span:last-child{color:#4d6a12;}
   .calc-num-wrap{display:inline-flex;align-items:baseline;color:#4d6a12;}
   .calc-num{
-    width:9.5ch;text-align:right;font:inherit;font-weight:700;color:#4d6a12;
+    width:9.5ch;text-align:right;font:inherit;font-family:var(--ff-mono);font-weight:700;color:#4d6a12;
     border:1px solid transparent;border-radius:8px;background:transparent;padding:2px 4px;margin-right:2px;
     transition:border-color .15s ease, background .15s ease, box-shadow .15s ease;
   }
@@ -232,46 +251,85 @@
   section[id]{scroll-margin-top:96px;}
   .section-head{max-width:640px;margin-bottom:56px;}
   .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
-  .section-head h2{font-size:clamp(26px,3.4vw,38px);margin:16px 0 14px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,38px);letter-spacing:-.025em;margin:16px 0 14px;}
   .section-head p{color:var(--muted);font-size:16px;}
   .on-dark .section-head p{color:var(--muted-dark);}
 
   /* reveal */
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-spring), transform .7s var(--ease-spring);transition-delay:calc(var(--i,0) * 90ms);}
   .reveal.in{opacity:1;transform:none;}
 
-  /* ---------- steps ---------- */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
-  .step-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);padding:32px 28px;position:relative;}
-  .step-card .num{font-family:var(--ff-head);font-size:44px;font-weight:800;color:var(--lime-400);-webkit-text-stroke:1.5px var(--navy-900);color:transparent;}
-  .step-card h3{font-size:19px;margin:18px 0 10px;}
-  .step-card p{color:var(--muted);font-size:14.5px;}
-  .step-arrow{position:absolute;top:50%;right:-24px;transform:translateY(-50%);width:24px;height:2px;background:var(--line);display:block;}
-  .step-arrow::after{content:'';position:absolute;right:-1px;top:-4px;width:9px;height:9px;border-top:2px solid var(--line);border-right:2px solid var(--line);transform:rotate(45deg);}
-  .step-card:last-child .step-arrow{display:none;}
-
-  /* ---------- offer grid ---------- */
-  .offer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-  .offer-card{
-    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);
-    padding:30px 26px;display:flex;flex-direction:column;gap:14px;
-    transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  /* grain */
+  .grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
-  .offer-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent;}
-  .offer-icon{width:52px;height:52px;border-radius:14px;background:var(--navy-900);display:flex;align-items:center;justify-content:center;}
+
+  @keyframes float-y{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
+  @keyframes breathe{0%,100%{opacity:1;}50%{opacity:.55;}}
+  @keyframes marquee-x{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @keyframes spin-slow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+  /* ---------- steps ---------- */
+  .steps-rail{display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-items:start;}
+  .step-item{position:relative;padding:0 34px;border-left:1px solid var(--line);}
+  .step-item:first-child{border-left:none;padding-left:0;}
+  .step-item:nth-child(2){transform:translateY(42px);}
+  .step-item:nth-child(3){transform:translateY(84px);}
+  .step-item .ghost-num{display:block;font-family:var(--ff-head);font-weight:800;font-size:clamp(52px,5.6vw,76px);line-height:1;color:transparent;-webkit-text-stroke:1.5px var(--navy-900);opacity:.15;margin-bottom:14px;}
+  .step-item h3{font-size:19.5px;margin:0 0 10px;}
+  .step-item p{color:var(--muted);font-size:14.5px;max-width:280px;}
+
+  /* ---------- offer bento ---------- */
+  .offer-bento{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:stretch;}
+  .offer-features{display:flex;flex-direction:column;gap:24px;}
+  .offer-icon{width:52px;height:52px;border-radius:14px;background:var(--navy-900);display:flex;align-items:center;justify-content:center;flex:none;}
   .offer-icon svg{width:26px;height:26px;color:var(--lime-400);}
-  .offer-card h3{font-size:18.5px;}
-  .offer-card p{color:var(--muted);font-size:14.5px;flex:1;}
-  .offer-card .link{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:13.5px;color:var(--navy-900);margin-top:4px;}
-  .offer-card .link svg{width:15px;height:15px;transition:transform .18s ease;}
-  .offer-card:hover .link svg{transform:translateX(3px);}
+  .link{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:13.5px;color:var(--navy-900);margin-top:4px;}
+  .link svg{width:15px;height:15px;transition:transform .18s var(--ease-spring);}
+  .link:hover svg{transform:translateX(3px);}
+
+  .offer-feature{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);
+    padding:34px 32px;display:flex;flex-direction:column;gap:14px;flex:1;
+    transition:transform .3s var(--ease-spring), box-shadow .3s var(--ease-spring), border-color .3s var(--ease-spring);
+  }
+  .offer-feature:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent;}
+  .offer-feature:hover .link svg{transform:translateX(3px);}
+  .offer-feature h3{font-size:22px;}
+  .offer-feature p{color:var(--muted);font-size:15px;max-width:38ch;flex:1;}
+
+  .offer-list{display:flex;flex-direction:column;border-top:1px solid var(--line);}
+  .offer-row{display:flex;gap:16px;align-items:flex-start;padding:22px 4px;border-bottom:1px solid var(--line);transition:padding-left .25s var(--ease-spring);}
+  .offer-row:hover{padding-left:10px;}
+  .offer-row:hover .link svg{transform:translateX(3px);}
+  .offer-row .offer-icon{width:42px;height:42px;border-radius:11px;}
+  .offer-row .offer-icon svg{width:20px;height:20px;}
+  .offer-row .body{flex:1;min-width:0;}
+  .offer-row h3{font-size:16px;margin-bottom:4px;}
+  .offer-row p{color:var(--muted);font-size:13.5px;}
 
   /* ---------- why us ---------- */
   .why-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center;}
-  .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:36px;}
-  .stat-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-sm);padding:22px 20px;}
-  .stat-box .n{font-family:var(--ff-head);font-size:34px;font-weight:800;color:var(--lime-400);}
+  .stat-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;gap:16px;margin-bottom:36px;}
+  .stat-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-sm);padding:22px 20px;transition:background-color .25s ease, border-color .25s ease;}
+  .stat-box:hover{background:rgba(255,255,255,.08);}
+  .stat-box .n{font-family:var(--ff-mono);font-size:34px;font-weight:700;color:var(--lime-400);letter-spacing:-.02em;}
   .stat-box .l{font-size:13px;color:var(--muted-dark);margin-top:4px;}
+  .stat-box:nth-child(1){grid-column:1;grid-row:1/3;display:flex;flex-direction:column;justify-content:center;}
+  .stat-box:nth-child(1) .n{font-size:52px;animation:breathe 4s ease-in-out infinite;}
+  .stat-box:nth-child(2){grid-column:2;grid-row:1;}
+  .stat-box:nth-child(3){grid-column:2;grid-row:2;}
+  .stat-box:nth-child(4){grid-column:1/3;grid-row:3;background:var(--lime-400);border-color:transparent;display:flex;align-items:center;gap:14px;}
+  .stat-box:nth-child(4):hover{background:var(--lime-300);}
+  .stat-box:nth-child(4) .n{color:var(--navy-900);font-size:30px;}
+  .stat-box:nth-child(4) .l{color:var(--lime-ink);margin-top:0;font-weight:600;}
+  @media (max-width:520px){
+    .stat-grid{grid-template-columns:1fr 1fr;}
+    .stat-box:nth-child(1){grid-column:1/3;grid-row:1;}
+    .stat-box:nth-child(2){grid-column:1;grid-row:2;}
+    .stat-box:nth-child(3){grid-column:2;grid-row:2;}
+    .stat-box:nth-child(4){grid-row:3;}
+  }
   .check-list{display:flex;flex-direction:column;gap:16px;}
   .check-item{display:flex;gap:14px;align-items:flex-start;}
   .check-item .ic{width:26px;height:26px;border-radius:50%;background:var(--lime-400);flex:none;display:flex;align-items:center;justify-content:center;margin-top:2px;}
@@ -280,11 +338,13 @@
   .check-item span{display:block;font-size:13.5px;color:var(--muted-dark);margin-top:3px;font-weight:400;}
 
   /* ---------- partners ---------- */
-  .partner-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+  .partner-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+  .partner-track{display:flex;gap:16px;width:max-content;animation:marquee-x 30s linear infinite;}
+  .partner-track:hover{animation-play-state:paused;}
   .partner-pill{
-    height:74px;border:1px solid var(--line);border-radius:var(--radius-sm);
+    height:74px;min-width:172px;border:1px solid var(--line);border-radius:var(--radius-sm);
     display:flex;align-items:center;justify-content:center;padding:14px 18px;
-    background:var(--white);
+    background:var(--white);flex:none;
   }
   .partner-pill img{max-width:100%;max-height:32px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.65;transition:filter .2s ease,opacity .2s ease;}
   .partner-pill:hover img{filter:grayscale(0);opacity:1;}
@@ -295,8 +355,9 @@
   .google-rating:hover{border-color:#9aa6ba;box-shadow:0 4px 14px rgba(20,30,50,.08);}
   .google-rating .stars-sm{color:#e0b400;letter-spacing:1px;font-size:13px;}
   .google-rating b{color:var(--navy-900);}
-  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-  .testi-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);padding:28px 26px;display:flex;flex-direction:column;gap:16px;}
+  .testi-grid{columns:3 300px;column-gap:24px;}
+  .testi-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-md);padding:28px 26px;display:flex;flex-direction:column;gap:16px;break-inside:avoid;margin:0 0 24px;transition:transform .3s var(--ease-spring), box-shadow .3s var(--ease-spring);}
+  .testi-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
   .testi-card .stars{display:flex;gap:4px;color:var(--lime-ink);}
   .testi-card .stars svg{width:16px;height:16px;fill:#e0b400;color:#e0b400;}
   .testi-card p.quote{font-size:14.5px;color:var(--navy-800);flex:1;}
@@ -391,19 +452,20 @@
     .why-wrap{grid-template-columns:1fr;}
     .contact-wrap{grid-template-columns:1fr;}
     .contact-info{position:static;}
-    .partner-grid{grid-template-columns:repeat(3,1fr);}
     .footer-grid{grid-template-columns:1fr 1fr;}
   }
   @media (max-width:860px){
     nav.primary,.header-phone{display:none;}
     .header-cta .btn{display:none;}
     .menu-toggle{display:flex;}
-    .steps,.offer-grid,.testi-grid{grid-template-columns:1fr;}
-    .step-arrow{display:none;}
+    .steps-rail,.offer-bento{grid-template-columns:1fr;}
+    .testi-grid{columns:1;}
+    .steps-rail{gap:36px;}
+    .step-item{transform:none !important;border-left:none;padding-left:0;border-top:1px solid var(--line);padding-top:30px;}
+    .step-item:first-child{border-top:none;padding-top:0;}
     .section{padding:64px 0;}
     .form-grid{grid-template-columns:1fr;}
     .cta-band{flex-direction:column;align-items:flex-start;}
-    .partner-grid{grid-template-columns:repeat(2,1fr);}
   }
   @media (max-width:520px){
     .container{padding:0 18px;}
@@ -415,6 +477,7 @@
 </head>
 <body>
 
+<div class="grain" aria-hidden="true"></div>
 <div id="progress"></div>
 
 <header class="site" id="site-header">
@@ -490,6 +553,7 @@
       </div>
 
       <div class="hero-visual">
+        <div class="hero-badge"><span class="pulse-dot"></span>Odpowiedź w 15–30 min</div>
         <div class="calc-card">
           <h4>Kalkulator raty — przykład</h4>
           <p class="sub">Wybierz rodzaj finansowania i przesuń suwaki</p>
@@ -525,7 +589,7 @@
 
           <div class="calc-result">
             <span style="font-size:13px;font-weight:600;color:var(--muted);">Rata już od</span>
-            <div class="num" id="rate-out">1 507 zł<small>&nbsp;/mies.</small></div>
+            <div class="num mono" id="rate-out">1 507 zł<small>&nbsp;/mies.</small></div>
           </div>
           <p class="calc-disclaimer">Wyliczenie ma charakter wyłącznie poglądowy i nie stanowi oferty w rozumieniu Kodeksu cywilnego. Ostateczne warunki finansowania ustala bank lub instytucja finansująca.</p>
         </div>
@@ -541,21 +605,19 @@
         <h2>Jak działamy?</h2>
         <p>Trzy kroki dzielą Cię od decyzji finansowej — całość załatwisz online, bez wychodzenia z domu.</p>
       </div>
-      <div class="steps">
-        <div class="step-card reveal">
-          <span class="num">01</span>
+      <div class="steps-rail">
+        <div class="step-item reveal">
+          <span class="ghost-num">01</span>
           <h3>Wypełnij formularz</h3>
           <p>Zajmuje 2 minuty. Opisz, czego potrzebujesz — kredytu, leasingu czy ubezpieczenia.</p>
-          <span class="step-arrow"></span>
         </div>
-        <div class="step-card reveal">
-          <span class="num">02</span>
+        <div class="step-item reveal">
+          <span class="ghost-num">02</span>
           <h3>Rozmowa z doradcą</h3>
           <p>Nasz ekspert analizuje Twoją sytuację i porównuje oferty dostępnych banków i instytucji.</p>
-          <span class="step-arrow"></span>
         </div>
-        <div class="step-card reveal">
-          <span class="num">03</span>
+        <div class="step-item reveal">
+          <span class="ghost-num">03</span>
           <h3>Decyzja i realizacja</h3>
           <p>Otrzymujesz najlepiej dopasowaną ofertę i finalizujesz formalności — szybko i bezstresowo.</p>
         </div>
@@ -571,48 +633,56 @@
         <h2>Rozwiązania finansowe dopasowane do Ciebie</h2>
         <p>Niezależnie od tego, czy potrzebujesz gotówki, chcesz kupić mieszkanie, rozwijać firmę czy zabezpieczyć majątek — mamy dla Ciebie ofertę.</p>
       </div>
-      <div class="offer-grid">
+      <div class="offer-bento">
 
-        <div class="offer-card reveal">
-          <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 6V4h12v2"/></svg></div>
-          <h3>Kredyty gotówkowe</h3>
-          <p>Szybka gotówka na dowolny cel — bez zaświadczeń i zbędnych formalności, decyzja nawet tego samego dnia.</p>
-          <a href="#kontakt" class="link" data-topic="Kredyt gotówkowy">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="offer-features">
+          <div class="offer-feature reveal">
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 6V4h12v2"/></svg></div>
+            <h3>Kredyty gotówkowe</h3>
+            <p>Szybka gotówka na dowolny cel — bez zaświadczeń i zbędnych formalności, decyzja nawet tego samego dnia.</p>
+            <a href="#kontakt" class="link" data-topic="Kredyt gotówkowy">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="offer-feature reveal">
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></div>
+            <h3>Kredyty hipoteczne</h3>
+            <p>Finansowanie zakupu, budowy lub refinansowania nieruchomości — porównujemy oferty banków za Ciebie.</p>
+            <a href="#kontakt" class="link" data-topic="Kredyt hipoteczny">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
         </div>
 
-        <div class="offer-card reveal">
-          <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></div>
-          <h3>Kredyty hipoteczne</h3>
-          <p>Finansowanie zakupu, budowy lub refinansowania nieruchomości — porównujemy oferty banków za Ciebie.</p>
-          <a href="#kontakt" class="link" data-topic="Kredyt hipoteczny">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-
-        <div class="offer-card reveal">
-          <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg></div>
-          <h3>Kredyty firmowe</h3>
-          <p>Kapitał obrotowy i inwestycyjny dla Twojego biznesu — finansowanie do 300 000 zł.</p>
-          <a href="#kontakt" class="link" data-topic="Kredyt firmowy">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-
-        <div class="offer-card reveal">
-          <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v6M3 6h8"/><path d="M17 15v6M13 18h8"/><path d="M6 21l12-18"/></svg></div>
-          <h3>Konsolidacja zobowiązań</h3>
-          <p>Połącz kilka rat w jedną, niższą — uporządkuj swoje finanse i odzyskaj spokój.</p>
-          <a href="#kontakt" class="link" data-topic="Konsolidacja">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-
-        <div class="offer-card reveal">
-          <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="14" height="7" rx="1"/><circle cx="7.5" cy="18.5" r="1.8"/><circle cx="15.5" cy="18.5" r="1.8"/><path d="M17 10l3 3v4h-3"/></svg></div>
-          <h3>Leasing</h3>
-          <p>Sfinansuj auto, maszyny lub sprzęt bez obciążania zdolności kredytowej firmy.</p>
-          <a href="#kontakt" class="link" data-topic="Leasing">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-
-        <div class="offer-card reveal">
-          <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/></svg></div>
-          <h3>Ubezpieczenia</h3>
-          <p>Ochrona majątku, zdrowia i spłaty zobowiązań — dopasowana do Twojej sytuacji życiowej.</p>
-          <a href="#kontakt" class="link" data-topic="Ubezpieczenie">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <div class="offer-list reveal">
+          <div class="offer-row">
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg></div>
+            <div class="body">
+              <h3>Kredyty firmowe</h3>
+              <p>Kapitał obrotowy i inwestycyjny dla Twojego biznesu — finansowanie do 300 000 zł.</p>
+              <a href="#kontakt" class="link" data-topic="Kredyt firmowy">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+          <div class="offer-row">
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v6M3 6h8"/><path d="M17 15v6M13 18h8"/><path d="M6 21l12-18"/></svg></div>
+            <div class="body">
+              <h3>Konsolidacja zobowiązań</h3>
+              <p>Połącz kilka rat w jedną, niższą — uporządkuj swoje finanse i odzyskaj spokój.</p>
+              <a href="#kontakt" class="link" data-topic="Konsolidacja">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+          <div class="offer-row">
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="14" height="7" rx="1"/><circle cx="7.5" cy="18.5" r="1.8"/><circle cx="15.5" cy="18.5" r="1.8"/><path d="M17 10l3 3v4h-3"/></svg></div>
+            <div class="body">
+              <h3>Leasing</h3>
+              <p>Sfinansuj auto, maszyny lub sprzęt bez obciążania zdolności kredytowej firmy.</p>
+              <a href="#kontakt" class="link" data-topic="Leasing">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
+          <div class="offer-row">
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/></svg></div>
+            <div class="body">
+              <h3>Ubezpieczenia</h3>
+              <p>Ochrona majątku, zdrowia i spłaty zobowiązań — dopasowana do Twojej sytuacji życiowej.</p>
+              <a href="#kontakt" class="link" data-topic="Ubezpieczenie">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -663,13 +733,21 @@
         <span class="eyebrow">Zaufanie</span>
         <h2 style="font-size:26px;">Współpracujemy z wiodącymi instytucjami finansowymi w Polsce</h2>
       </div>
-      <div class="partner-grid reveal">
-        <div class="partner-pill"><img src="assets/banks/pko-bp.svg" alt="PKO Bank Polski" loading="lazy" width="140" height="32"></div>
-        <div class="partner-pill"><img src="assets/banks/pekao.svg" alt="Bank Pekao S.A." loading="lazy" width="140" height="32"></div>
-        <div class="partner-pill"><img src="assets/banks/mbank.svg" alt="mBank" loading="lazy" width="140" height="32"></div>
-        <div class="partner-pill"><img src="assets/banks/millennium.svg" alt="Bank Millennium" loading="lazy" width="140" height="32"></div>
-        <div class="partner-pill"><img src="assets/banks/alior.svg" alt="Alior Bank" loading="lazy" width="140" height="32"></div>
-        <div class="partner-pill"><img src="assets/banks/erste.svg" alt="Erste Bank" loading="lazy" width="140" height="32"></div>
+      <div class="partner-marquee reveal">
+        <div class="partner-track">
+          <div class="partner-pill"><img src="assets/banks/pko-bp.svg" alt="PKO Bank Polski" loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill"><img src="assets/banks/pekao.svg" alt="Bank Pekao S.A." loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill"><img src="assets/banks/mbank.svg" alt="mBank" loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill"><img src="assets/banks/millennium.svg" alt="Bank Millennium" loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill"><img src="assets/banks/alior.svg" alt="Alior Bank" loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill"><img src="assets/banks/erste.svg" alt="Erste Bank" loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill" aria-hidden="true"><img src="assets/banks/pko-bp.svg" alt="" loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill" aria-hidden="true"><img src="assets/banks/pekao.svg" alt="" loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill" aria-hidden="true"><img src="assets/banks/mbank.svg" alt="" loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill" aria-hidden="true"><img src="assets/banks/millennium.svg" alt="" loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill" aria-hidden="true"><img src="assets/banks/alior.svg" alt="" loading="lazy" width="140" height="32"></div>
+          <div class="partner-pill" aria-hidden="true"><img src="assets/banks/erste.svg" alt="" loading="lazy" width="140" height="32"></div>
+        </div>
       </div>
       <p class="partner-note">Oraz kilkanaście innych banków i instytucji finansowych — pełną listę przedstawiamy podczas rozmowy.</p>
     </div>
@@ -685,7 +763,7 @@
         <a class="google-rating" href="https://www.google.com/maps/place/Expert+Financial/@53.1365373,17.6019858,17z/data=!4m8!3m7!1s0x4703a15f67ed2c0f:0x3c29488aca6cc0f0!8m2!3d53.1365373!4d17.6019858!9m1!1b1!16s%2Fg%2F11mkkt_b26" target="_blank" rel="noopener">
           <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.09A6.6 6.6 0 0 1 5.5 12c0-.73.13-1.43.34-2.09V7.07H2.18A11 11 0 0 0 1 12c0 1.77.43 3.45 1.18 4.93z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1a11 11 0 0 0-9.82 6.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
           <span class="stars-sm">★★★★★</span>
-          <b>4,7</b> na podstawie 25 opinii w Google
+          <b class="mono">4,7</b> na podstawie 25 opinii w Google
         </a>
       </div>
       <div class="testi-grid">
@@ -937,6 +1015,15 @@
   onScroll();
   backTop.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
 
+  // cursor-aware button glow
+  document.querySelectorAll('.btn').forEach(function(btn){
+    btn.addEventListener('mousemove', function(e){
+      var r = btn.getBoundingClientRect();
+      btn.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      btn.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  });
+
   // mobile menu
   var panel = document.getElementById('mobile-panel');
   document.getElementById('menu-open').addEventListener('click', function(){ panel.classList.add('open'); document.body.style.overflow='hidden'; });
@@ -956,8 +1043,15 @@
     });
   });
 
-  // reveal on scroll
+  // reveal on scroll (staggered per parent group)
   var revealEls = document.querySelectorAll('.reveal');
+  var revealCounters = new WeakMap();
+  revealEls.forEach(function(el){
+    var parent = el.parentElement;
+    var idx = revealCounters.get(parent) || 0;
+    el.style.setProperty('--i', idx);
+    revealCounters.set(parent, idx + 1);
+  });
   if('IntersectionObserver' in window){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
