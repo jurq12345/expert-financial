@@ -105,12 +105,12 @@
   section{position:relative;}
   .container{max-width:var(--container);margin:0 auto;padding:0 24px;}
   .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
-    font-family:var(--ff-body);font-weight:700;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--lime-ink);background:var(--lime-300);padding:7px 14px 7px 12px;border-radius:999px;
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--ff-mono);font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+    color:#4d6a12;padding-bottom:3px;border-bottom:1px solid rgba(77,106,18,.25);
   }
-  .eyebrow.on-dark{color:var(--navy-900);background:var(--lime-400);}
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.6;}
+  .eyebrow.on-dark{color:var(--lime-400);border-bottom-color:rgba(205,235,82,.3);}
+  .eyebrow .dot{width:5px;height:5px;background:currentColor;flex:none;transform:rotate(45deg);animation:breathe 2.6s ease-in-out infinite;}
 
   /* ---------- buttons ---------- */
   .btn{
@@ -268,6 +268,8 @@
   @keyframes breathe{0%,100%{opacity:1;}50%{opacity:.55;}}
   @keyframes marquee-x{from{transform:translateX(0);}to{transform:translateX(-50%);}}
   @keyframes spin-slow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+  @keyframes load-in{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+  .load-in{animation:load-in .8s var(--ease-spring) both;animation-delay:calc(.08s + var(--ld,0) * 90ms);}
 
   /* ---------- steps ---------- */
   .steps-rail{display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-items:start;}
@@ -535,24 +537,24 @@
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <span class="eyebrow on-dark"><span class="dot"></span>Pośrednictwo finansowe nowej generacji</span>
-        <h1>Finansowanie, które ma sens.<br>Bez chaosu i <em>bez ukrytych kosztów</em>.</h1>
-        <p class="lead">Porównujemy oferty kilkunastu banków i instytucji finansowych, żeby dobrać rozwiązanie dopasowane do Twojej sytuacji — kredyt gotówkowy, hipoteczny, firmowy, leasing czy ubezpieczenie. Odpowiedź w 15–30 minut, całkowicie online.</p>
-        <div class="cta-row">
+        <span class="eyebrow on-dark load-in" style="--ld:0;"><span class="dot"></span>Pośrednictwo finansowe nowej generacji</span>
+        <h1 class="load-in" style="--ld:1;">Finansowanie, które ma sens.<br>Bez chaosu i <em>bez ukrytych kosztów</em>.</h1>
+        <p class="lead load-in" style="--ld:2;">Porównujemy oferty kilkunastu banków i instytucji finansowych, żeby dobrać rozwiązanie dopasowane do Twojej sytuacji — kredyt gotówkowy, hipoteczny, firmowy, leasing czy ubezpieczenie. Odpowiedź w 15–30 minut, całkowicie online.</p>
+        <div class="cta-row load-in" style="--ld:3;">
           <a href="#kontakt" class="btn btn-primary">
             Umów bezpłatną konsultację
             <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <a href="#oferta" class="btn btn-ghost-dark">Zobacz ofertę</a>
         </div>
-        <div class="trust-row">
+        <div class="trust-row load-in" style="--ld:4;">
           <div class="trust-item"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Ponad 12 lat doświadczenia</div>
           <div class="trust-item"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Dostęp do ofert 20+ banków</div>
           <div class="trust-item"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Zero formalności papierowych</div>
         </div>
       </div>
 
-      <div class="hero-visual">
+      <div class="hero-visual load-in" style="--ld:2;">
         <div class="hero-badge"><span class="pulse-dot"></span>Odpowiedź w 15–30 min</div>
         <div class="calc-card">
           <h4>Kalkulator raty — przykład</h4>
