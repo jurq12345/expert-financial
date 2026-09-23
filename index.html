@@ -238,6 +238,8 @@
   }
   input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--navy-900);border:3px solid var(--lime-400);cursor:pointer;}
   input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--navy-900);border:3px solid var(--lime-400);cursor:pointer;border:none;}
+  input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(23,41,74,.18);}
+  input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 4px rgba(23,41,74,.18);}
   .calc-result{display:flex;align-items:baseline;justify-content:space-between;background:var(--paper);border-radius:14px;padding:14px 16px;margin-top:6px;}
   .calc-result .num{font-family:var(--ff-head);font-size:26px;font-weight:800;color:var(--navy-900);}
   .calc-result .num small{font-size:13px;font-weight:600;color:var(--muted);}
@@ -904,7 +906,7 @@
 
           <div class="consent-row">
             <input type="checkbox" id="consent" required />
-            <label for="consent">Wyrażam zgodę na przetwarzanie moich danych osobowych przez Expert Financial w celu obsługi zapytania, zgodnie z Polityką prywatności.</label>
+            <label for="consent">Wyrażam zgodę na przetwarzanie moich danych osobowych przez Expert Financial w celu obsługi zapytania, zgodnie z <a href="/polityka-prywatnosci.html" target="_blank" rel="noopener" style="color:var(--navy-900);text-decoration:underline;">Polityką prywatności</a>.</label>
           </div>
 
           <div class="form-foot">
@@ -952,6 +954,7 @@
           Expert Financial
         </a>
         <p class="desc">Doradztwo kredytowe i ubezpieczeniowe — porównujemy oferty rynku, żeby dobrać rozwiązanie dopasowane do Twojej sytuacji.</p>
+        <p class="desc" style="margin-top:14px;font-size:12px;color:#6b7893;">Lidia Lach, działalność gospodarcza pod marką Expert Financial<br>NIP 5581749422 · REGON 369809655<br>Huzarska 2/6, 85-334 Bydgoszcz (adres rejestrowy)</p>
       </div>
       <div class="footer-col">
         <h4>Nawigacja</h4>
@@ -982,7 +985,7 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Expert Financial. Wszelkie prawa zastrzeżone.</span>
-      <span class="legal"><a href="#">Polityka prywatności</a><a href="#">Regulamin</a></span>
+      <span class="legal"><a href="/polityka-prywatnosci.html">Polityka prywatności</a><a href="/regulamin.html">Regulamin</a></span>
     </div>
   </div>
 </footer>
@@ -1024,10 +1027,11 @@
 
   // mobile menu
   var panel = document.getElementById('mobile-panel');
-  document.getElementById('menu-open').addEventListener('click', function(){ panel.classList.add('open'); document.body.style.overflow='hidden'; });
+  document.getElementById('menu-open').addEventListener('click', function(){ panel.classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('menu-close').focus(); });
   document.getElementById('menu-close').addEventListener('click', closePanel);
   panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closePanel); });
-  function closePanel(){ panel.classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && panel.classList.contains('open')) closePanel(); });
+  function closePanel(){ panel.classList.remove('open'); document.body.style.overflow=''; document.getElementById('menu-open').focus(); }
 
   // smooth-scroll in-page anchor links ourselves so the URL never picks up a #hash
   document.querySelectorAll('a[href^="#"]').forEach(function(a){
