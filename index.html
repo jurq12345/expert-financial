@@ -17,7 +17,14 @@
 <meta name="twitter:title" content="Expert Financial — Zaufaj ekspertom finansowania" />
 <meta name="twitter:description" content="Kredyty gotówkowe, hipoteczne, firmowe, konsolidacyjne, leasing i ubezpieczenia — wszystko w jednym miejscu, online." />
 <link rel="canonical" href="https://expert-financial.pl/" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230b1526'/%3E%3Cpath d='M16 40 L27 28 L35 35 L48 20' stroke='%23cdeb52' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M40 20 H48 V28' stroke='%23cdeb52' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230b1526'/%3E%3Cpath d='M16 40 L27 28 L35 35 L48 20' stroke='%23cdeb52' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M40 20 H48 V28' stroke='%23cdeb52' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon/favicon-192x192.png">
+<link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -282,6 +289,24 @@
   @keyframes load-in{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
   .load-in{animation:load-in .8s var(--ease-spring) both;animation-delay:calc(.08s + var(--ld,0) * 90ms);}
 
+  /* ---------- preloader ---------- */
+  #preloader{
+    position:fixed;inset:0;z-index:2000;background:var(--navy-950);
+    display:flex;align-items:center;justify-content:center;
+    transition:opacity .5s ease, visibility .5s ease;
+  }
+  #preloader.hide{opacity:0;visibility:hidden;pointer-events:none;}
+  #preloader svg{width:84px;height:84px;overflow:visible;}
+  #preloader .pl-circle{transform-origin:32px 32px;animation:pl-pop .5s var(--ease-spring) both;}
+  #preloader .pl-check{stroke-dasharray:50;stroke-dashoffset:50;animation:pl-draw .5s ease forwards .35s;}
+  #preloader .pl-arrow{stroke-dasharray:20;stroke-dashoffset:20;animation:pl-draw .3s ease forwards .78s;}
+  @keyframes pl-pop{from{opacity:0;transform:scale(.7);}to{opacity:1;transform:scale(1);}}
+  @keyframes pl-draw{to{stroke-dashoffset:0;}}
+  @media (prefers-reduced-motion: reduce){
+    #preloader{transition:none;}
+    #preloader .pl-circle,#preloader .pl-check,#preloader .pl-arrow{animation:none;opacity:1;stroke-dashoffset:0;}
+  }
+
   /* ---------- steps ---------- */
   .steps-rail{display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-items:start;}
   .step-item{position:relative;padding:0 34px;border-left:1px solid var(--line);}
@@ -496,6 +521,14 @@
 </style>
 </head>
 <body>
+
+<div id="preloader" aria-hidden="true">
+  <svg viewBox="0 0 64 64" fill="none">
+    <circle class="pl-circle" cx="32" cy="32" r="30" fill="#0b1526" stroke="#233151" stroke-width="1.5"/>
+    <path class="pl-check" d="M16 40 L27 28 L35 35 L48 20" stroke="#cdeb52" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="pl-arrow" d="M40 20 H48 V28" stroke="#cdeb52" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div id="progress"></div>
@@ -1060,6 +1093,23 @@
 <script>
 (function(){
   "use strict";
+
+  // preloader
+  var preloader = document.getElementById('preloader');
+  var plStart = Date.now();
+  var plDone = false;
+  function hidePreloader(){
+    if(plDone) return;
+    plDone = true;
+    var wait = Math.max(0, 900 - (Date.now() - plStart));
+    setTimeout(function(){
+      preloader.classList.add('hide');
+      setTimeout(function(){ if(preloader.parentNode) preloader.parentNode.removeChild(preloader); }, 550);
+    }, wait);
+  }
+  if(document.readyState === 'complete'){ hidePreloader(); }
+  else { window.addEventListener('load', hidePreloader); }
+  setTimeout(hidePreloader, 3000);
 
   // year
   document.getElementById('year').textContent = new Date().getFullYear();
