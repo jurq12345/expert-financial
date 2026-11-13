@@ -145,6 +145,9 @@
   .btn:active{transform:scale(.97);}
   .btn-primary{background:var(--lime-400);color:var(--navy-900);box-shadow:0 12px 24px -10px rgba(205,235,82,.55);}
   .btn-primary:hover{background:var(--lime-300);box-shadow:0 16px 30px -10px rgba(205,235,82,.7);transform:translateY(-2px);}
+  .btn-no-glow{box-shadow:none;}
+  .btn-no-glow:hover{box-shadow:none;}
+  .btn-no-glow::before{display:none;}
   .btn-ghost-dark{background:transparent;color:var(--white);border-color:rgba(255,255,255,.28);}
   .btn-ghost-dark:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.06);}
   .btn-ghost-light{background:transparent;color:var(--navy-900);border-color:var(--line);}
@@ -593,7 +596,7 @@
         <h1 class="load-in" style="--ld:0;">Finansowanie, które ma sens.<br>Bez chaosu i <em>bez ukrytych kosztów</em>.</h1>
         <p class="lead load-in" style="--ld:1;">Porównujemy oferty kilkunastu banków i instytucji finansowych, żeby dobrać rozwiązanie dopasowane do Twojej sytuacji — kredyt gotówkowy, hipoteczny, firmowy, leasing czy ubezpieczenie. Odpowiedź w 15–30 minut, całkowicie online.</p>
         <div class="cta-row load-in" style="--ld:2;">
-          <a href="#kontakt" class="btn btn-primary">
+          <a href="#kontakt" class="btn btn-primary btn-no-glow">
             Umów bezpłatną konsultację
             <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
