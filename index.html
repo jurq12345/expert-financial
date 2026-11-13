@@ -42,8 +42,8 @@
   "openingHours": ["Mo 09:00-17:00", "Tu 11:00-17:00", "We 09:00-17:00", "Th 11:00-17:00", "Fr 09:00-15:00"],
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "4.7",
-    "reviewCount": "25"
+    "ratingValue": "4.8",
+    "reviewCount": "32"
   },
   "review": [
     { "@type": "Review", "author": { "@type": "Person", "name": "Natalia" }, "reviewRating": { "@type": "Rating", "ratingValue": "5" }, "reviewBody": "Z czystym sumieniem polecam. Uzyskaliśmy kredyt hipoteczny bez żadnych problemów. Pełen profesjonalizm oraz maksymalne zaangażowanie Pana Bartłomieja pozwoliło nam na wzięcie kredytu na korzystnych warunkach." },
@@ -128,7 +128,7 @@
   .btn{
     position:relative;overflow:hidden;
     display:inline-flex;align-items:center;justify-content:center;gap:10px;
-    padding:15px 26px;border-radius:999px;border:1px solid transparent;
+    padding:15px 26px;border-radius:var(--radius-sm);border:1px solid transparent;
     font-weight:700;font-size:15px;white-space:nowrap;
     transition:transform .18s var(--ease-spring), box-shadow .18s ease, background-color .18s ease, color .18s ease, border-color .18s ease;
   }
@@ -209,7 +209,6 @@
     border-radius:var(--radius-md);
     box-shadow:var(--shadow-lg);
     padding:22px 24px 24px;
-    transform:rotate(-1.2deg);
   }
   .hero-badge{
     position:absolute;top:-18px;right:2px;z-index:2;
@@ -661,13 +660,13 @@
 
         <div class="offer-features">
           <div class="offer-feature reveal">
-            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 6V4h12v2"/></svg></div>
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 6.5A2.5 2.5 0 0 1 4.5 4h15A2.5 2.5 0 0 1 22 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 17.5v-11Zm10 1.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg></div>
             <h3>Kredyty gotówkowe</h3>
             <p>Szybka gotówka na dowolny cel — bez zaświadczeń i zbędnych formalności, decyzja nawet tego samego dnia.</p>
             <a href="#kontakt" class="link" data-topic="Kredyt gotówkowy">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
           <div class="offer-feature reveal">
-            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></div>
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8 2 11h3v9a1 1 0 0 0 1 1h5v-6h2v6h5a1 1 0 0 0 1-1v-9h3L12 2.8Z"/></svg></div>
             <h3>Kredyty hipoteczne</h3>
             <p>Finansowanie zakupu, budowy lub refinansowania nieruchomości — porównujemy oferty banków za Ciebie.</p>
             <a href="#kontakt" class="link" data-topic="Kredyt hipoteczny">Sprawdź ofertę <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -676,7 +675,7 @@
 
         <div class="offer-list reveal">
           <div class="offer-row">
-            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg></div>
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M9 5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7h3.5A2.5 2.5 0 0 1 21 9.5V11H3V9.5A2.5 2.5 0 0 1 5.5 7H9V5.5ZM10.5 7h3V5.5h-3V7ZM3 13h18v6.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19.5V13Zm8 1.5h2v2.2h-2v-2.2Z"/></svg></div>
             <div class="body">
               <h3>Kredyty firmowe</h3>
               <p>Kapitał obrotowy i inwestycyjny dla Twojego biznesu — finansowanie do 300 000 zł.</p>
@@ -684,7 +683,7 @@
             </div>
           </div>
           <div class="offer-row">
-            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v6M3 6h8"/><path d="M17 15v6M13 18h8"/><path d="M6 21l12-18"/></svg></div>
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h18l-7 9.2V19l-4 2v-7.8L3 4Z"/></svg></div>
             <div class="body">
               <h3>Konsolidacja zobowiązań</h3>
               <p>Połącz kilka rat w jedną, niższą — uporządkuj swoje finanse i odzyskaj spokój.</p>
@@ -692,7 +691,7 @@
             </div>
           </div>
           <div class="offer-row">
-            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="14" height="7" rx="1"/><circle cx="7.5" cy="18.5" r="1.8"/><circle cx="15.5" cy="18.5" r="1.8"/><path d="M17 10l3 3v4h-3"/></svg></div>
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.6C18.72 6 18.16 5.6 17.5 5.6h-11c-.66 0-1.21.4-1.42 1l-2.08 6v6.5a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h12v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-6.5l-2.08-6ZM6.5 16.6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm11 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM5 11.6l1.5-5h11l1.5 5H5Z"/></svg></div>
             <div class="body">
               <h3>Leasing</h3>
               <p>Sfinansuj auto, maszyny lub sprzęt bez obciążania zdolności kredytowej firmy.</p>
@@ -700,7 +699,7 @@
             </div>
           </div>
           <div class="offer-row">
-            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-3z"/></svg></div>
+            <div class="offer-icon"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3Z"/></svg></div>
             <div class="body">
               <h3>Ubezpieczenia</h3>
               <p>Ochrona majątku, zdrowia i spłaty zobowiązań — dopasowana do Twojej sytuacji życiowej.</p>
@@ -719,11 +718,10 @@
       <div class="reveal">
         <div class="stat-grid">
           <div class="stat-box"><div class="n" data-count="12">0</div><div class="l">lat doświadczenia na rynku</div></div>
-          <div class="stat-box"><div class="n" data-count="3200">0</div><div class="l">obsłużonych klientów</div></div>
+          <div class="stat-box"><div class="n" data-count="3274">0</div><div class="l">obsłużonych klientów</div></div>
           <div class="stat-box"><div class="n" data-count="20">0</div><div class="l">banków i instytucji partnerskich</div></div>
-          <div class="stat-box"><div class="n" data-count="98">0</div><div class="l">% klientów poleca nas dalej</div></div>
+          <div class="stat-box"><div class="n" data-count="96">0</div><div class="l">% klientów poleca nas dalej</div></div>
         </div>
-        <p style="font-size:12px;color:var(--muted-dark);">* Wartości przykładowe do potwierdzenia i podmiany na docelowe dane firmy.</p>
       </div>
       <div class="reveal">
         <span class="eyebrow on-dark">Dlaczego Expert Financial?</span>
@@ -787,7 +785,7 @@
         <a class="google-rating" href="https://www.google.com/maps/place/Expert+Financial/@53.1365373,17.6019858,17z/data=!4m8!3m7!1s0x4703a15f67ed2c0f:0x3c29488aca6cc0f0!8m2!3d53.1365373!4d17.6019858!9m1!1b1!16s%2Fg%2F11mkkt_b26" target="_blank" rel="noopener">
           <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.26 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.09A6.6 6.6 0 0 1 5.5 12c0-.73.13-1.43.34-2.09V7.07H2.18A11 11 0 0 0 1 12c0 1.77.43 3.45 1.18 4.93z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1a11 11 0 0 0-9.82 6.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
           <span class="stars-sm">★★★★★</span>
-          <b class="mono">4,7</b> na podstawie 25 opinii w Google
+          <b class="mono">4,8</b> na podstawie 32 opinii w Google
         </a>
       </div>
       <div class="testi-grid">
