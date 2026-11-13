@@ -52,6 +52,19 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Jak długo czeka się na decyzję kredytową?", "acceptedAnswer": { "@type": "Answer", "text": "Banki mają 21 dni roboczych na wydanie decyzji kredytowej. Warunkiem jest złożenie kompletu wymaganych dokumentów — od tego momentu liczy się czas do wydania decyzji." } },
+    { "@type": "Question", "name": "Czy jeśli w przeszłości miałem zaległości w płatnościach, mam szansę na kredyt?", "acceptedAnswer": { "@type": "Answer", "text": "Tak. To zawsze kwestia indywidualna. Nasi eksperci podczas spotkania przeanalizują dotychczasową historię spłaty zobowiązań i przedstawią plan działania." } },
+    { "@type": "Question", "name": "Zarabiam w euro. Czy mogę otrzymać kredyt na mieszkanie?", "acceptedAnswer": { "@type": "Answer", "text": "Tak, jest możliwość wnioskowania o kredyt. Liczba banków, które to akceptują, jest jednak ograniczona." } },
+    { "@type": "Question", "name": "Czy mogę złożyć wniosek do kilku banków?", "acceptedAnswer": { "@type": "Answer", "text": "Tak, możesz ubiegać się o kredyt w kilku bankach. Warto jednak ograniczyć się do 2–3, bo zbyt wiele zapytań może wpływać na ocenę wiarygodności klienta." } },
+    { "@type": "Question", "name": "Czy komornik przekreśla szanse na pożyczkę?", "acceptedAnswer": { "@type": "Answer", "text": "Niekoniecznie — to zależy od rodzaju zajęcia komorniczego i Twojej aktualnej sytuacji finansowej. Część instytucji oferuje rozwiązania dopasowane do osób z zajęciem komorniczym, inne wymagają jego zakończenia. Najlepiej omówić to indywidualnie — pomożemy sprawdzić, jakie opcje są dziś dostępne." } }
+  ]
+}
+</script>
 <style>
   :root{
     --navy-950:#070c17;
@@ -369,6 +382,15 @@
   .testi-card.placeholder{border-style:dashed;color:var(--muted);align-items:center;justify-content:center;text-align:center;}
   .testi-card.placeholder .ph-ic{width:40px;height:40px;border-radius:50%;background:var(--paper);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;}
   .testi-card.placeholder .ph-ic svg{width:20px;height:20px;color:#9aa6ba;}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{display:flex;flex-direction:column;gap:12px;max-width:820px;margin:0 auto;}
+  .faq-item{border:1px solid var(--line);border-radius:var(--radius-md);padding:4px 26px;background:var(--paper);}
+  .faq-item summary{cursor:pointer;list-style:none;padding:20px 0;font-family:var(--ff-head);font-weight:700;font-size:16.5px;color:var(--navy-900);display:flex;justify-content:space-between;align-items:center;gap:20px;}
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary .faq-ic{flex:none;width:22px;height:22px;color:var(--navy-700);transition:transform .25s var(--ease-spring);}
+  .faq-item[open] summary .faq-ic{transform:rotate(45deg);}
+  .faq-item p{margin:0 0 20px;color:var(--muted);font-size:15px;line-height:1.6;}
   .testi-card.placeholder p{font-size:13.5px;}
 
   /* ---------- contact ---------- */
@@ -492,6 +514,7 @@
       <a href="#oferta">Oferta</a>
       <a href="#dlaczego-my">Dlaczego my</a>
       <a href="#opinie">Opinie</a>
+      <a href="#faq">FAQ</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
     <div class="header-cta">
@@ -522,6 +545,7 @@
     <a href="#oferta">Oferta</a>
     <a href="#dlaczego-my">Dlaczego my</a>
     <a href="#opinie">Opinie</a>
+    <a href="#faq">FAQ</a>
     <a href="#kontakt">Kontakt</a>
   </nav>
   <div class="foot">
@@ -815,6 +839,49 @@
             <div><b>Klaudia Kwiatkowska</b><span>Opinia z Google</span></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" style="background:var(--white);">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Najczęstsze pytania</span>
+        <h2>FAQ — pytania o kredyt</h2>
+        <p>Odpowiadamy na pytania, które najczęściej słyszymy od klientów.</p>
+      </div>
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>Jak długo czeka się na decyzję kredytową?
+            <svg class="faq-ic" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Banki mają 21 dni roboczych na wydanie decyzji kredytowej. Warunkiem jest złożenie kompletu wymaganych dokumentów — od tego momentu liczy się czas do wydania decyzji.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy jeśli w przeszłości miałem zaległości w płatnościach, mam szansę na kredyt?
+            <svg class="faq-ic" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Tak. To zawsze kwestia indywidualna. Nasi eksperci podczas spotkania przeanalizują dotychczasową historię spłaty zobowiązań i przedstawią plan działania.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Zarabiam w euro. Czy mogę otrzymać kredyt na mieszkanie?
+            <svg class="faq-ic" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Tak, jest możliwość wnioskowania o kredyt. Liczba banków, które to akceptują, jest jednak ograniczona.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy mogę złożyć wniosek do kilku banków?
+            <svg class="faq-ic" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Tak, możesz ubiegać się o kredyt w kilku bankach. Warto jednak ograniczyć się do 2–3, bo zbyt wiele zapytań może wpływać na ocenę wiarygodności klienta.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Czy komornik przekreśla szanse na pożyczkę?
+            <svg class="faq-ic" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </summary>
+          <p>Niekoniecznie — to zależy od rodzaju zajęcia komorniczego i Twojej aktualnej sytuacji finansowej. Część instytucji oferuje rozwiązania dopasowane do osób z zajęciem komorniczym, inne wymagają jego zakończenia. Najlepiej omówić to indywidualnie — pomożemy sprawdzić, jakie opcje są dziś dostępne.</p>
+        </details>
       </div>
     </div>
   </section>

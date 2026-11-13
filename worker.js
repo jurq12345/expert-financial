@@ -8,17 +8,33 @@ const MAX_TOTAL_ATTACHMENT_BYTES = 8 * 1024 * 1024;
 const MAX_FILES = 5;
 
 // Leftover URLs from the old WordPress site that Google still has crawled and
-// is flagging as 404s in Search Console. Redirect them instead of 404ing so
-// any inbound links/link equity land on the current homepage.
-const LEGACY_REDIRECTS = new Set([
-  "/o-nas",
-  "/o-nas/",
-  "/blog",
-  "/blog/",
-  "/category/dlugi",
-  "/category/dlugi/",
-  "/kredyt-gotowkowy-kiedy-warto-go-wziac",
-  "/kredyt-gotowkowy-kiedy-warto-go-wziac/",
+// is flagging as 404s in Search Console (confirmed via GSC Pages report —
+// these were pulling real impressions into a 404). Redirect each to the
+// closest equivalent section on the current one-page site instead of 404ing,
+// so inbound links/search equity land somewhere relevant.
+const LEGACY_REDIRECTS = new Map([
+  ["/o-nas", "/"],
+  ["/o-nas/", "/"],
+  ["/blog", "/"],
+  ["/blog/", "/"],
+  ["/category/dlugi", "/"],
+  ["/category/dlugi/", "/"],
+  ["/category/advices", "/"],
+  ["/category/advices/", "/"],
+  ["/kredyt-gotowkowy-kiedy-warto-go-wziac", "/#oferta"],
+  ["/kredyt-gotowkowy-kiedy-warto-go-wziac/", "/#oferta"],
+  ["/kontakt", "/#kontakt"],
+  ["/kontakt/", "/#kontakt"],
+  ["/formularz", "/#kontakt"],
+  ["/formularz/", "/#kontakt"],
+  ["/jak-dzialamy", "/#jak-dzialamy"],
+  ["/jak-dzialamy/", "/#jak-dzialamy"],
+  ["/leasing-czy-kredyt", "/#oferta"],
+  ["/leasing-czy-kredyt/", "/#oferta"],
+  ["/pozyczka-prywatna", "/#oferta"],
+  ["/pozyczka-prywatna/", "/#oferta"],
+  ["/czy-komornik-przekresla-szanse-na-pozyczke", "/#faq"],
+  ["/czy-komornik-przekresla-szanse-na-pozyczke/", "/#faq"],
 ]);
 
 export default {
@@ -31,12 +47,13 @@ export default {
     }
 
     if (LEGACY_REDIRECTS.has(url.pathname)) {
-      return Response.redirect(`${url.origin}/`, 301);
+      return Response.redirect(`${url.origin}${LEGACY_REDIRECTS.get(url.pathname)}`, 301);
     }
 
     if (request.method === "POST" && url.pathname === "/api/contact") {
       return handleContact(request, env);
     }
+
     return env.ASSETS.fetch(request);
   },
 };
