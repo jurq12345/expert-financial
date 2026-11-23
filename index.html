@@ -156,6 +156,32 @@
   .btn-sm{padding:11px 18px;font-size:13.5px;}
   .btn svg{width:18px;height:18px;flex:none;}
 
+  /* ---------- cookie banner ---------- */
+  #cookie-banner{
+    position:fixed;left:0;right:0;bottom:0;z-index:2000;
+    display:flex;justify-content:center;
+    padding:16px;
+    transform:translateY(130%);opacity:0;
+    transition:transform .4s var(--ease-spring), opacity .3s ease;
+    pointer-events:none;
+  }
+  #cookie-banner.show{transform:translateY(0);opacity:1;pointer-events:auto;}
+  #cookie-banner .inner{
+    width:100%;max-width:860px;
+    background:var(--navy-900);color:var(--white);
+    border-radius:var(--radius-md);box-shadow:var(--shadow-lg);
+    padding:22px 26px;
+    display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+  }
+  #cookie-banner p{flex:1 1 320px;margin:0;font-size:14px;line-height:1.55;color:var(--muted-dark);}
+  #cookie-banner a{color:var(--lime-400);text-decoration:underline;}
+  #cookie-banner .cookie-actions{display:flex;gap:10px;flex:none;}
+  @media (max-width:560px){
+    #cookie-banner .inner{padding:20px;}
+    #cookie-banner .cookie-actions{width:100%;}
+    #cookie-banner .cookie-actions .btn{flex:1;}
+  }
+
   /* ---------- header ---------- */
   #progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--lime-400),#8fd3ff);width:0%;z-index:1000;transition:width .1s linear;}
   header.site{
@@ -1426,6 +1452,39 @@
       });
   });
 
+})();
+</script>
+
+<div id="cookie-banner" role="dialog" aria-live="polite" aria-label="Zgoda na pliki cookie">
+  <div class="inner">
+    <p>Używamy plików cookie, aby strona działała poprawnie i abyśmy mogli analizować ruch oraz dopasowywać treści. Więcej informacji znajdziesz w <a href="/polityka-prywatnosci.html">polityce prywatności</a>.</p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-ghost-dark btn-sm" id="cookie-reject">Odrzuć</button>
+      <button type="button" class="btn btn-primary btn-sm" id="cookie-accept">Akceptuję</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY = 'ef-cookie-consent';
+  var banner = document.getElementById('cookie-banner');
+  if(!banner) return;
+
+  var stored;
+  try { stored = localStorage.getItem(KEY); } catch(e) { stored = null; }
+
+  if(!stored){
+    requestAnimationFrame(function(){ banner.classList.add('show'); });
+  }
+
+  function decide(value){
+    try { localStorage.setItem(KEY, value); } catch(e) {}
+    banner.classList.remove('show');
+    document.dispatchEvent(new CustomEvent('ef:cookie-consent', { detail: { value: value } }));
+  }
+
+  document.getElementById('cookie-accept').addEventListener('click', function(){ decide('accepted'); });
+  document.getElementById('cookie-reject').addEventListener('click', function(){ decide('rejected'); });
 })();
 </script>
 
