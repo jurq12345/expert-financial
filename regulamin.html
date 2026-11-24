@@ -36,6 +36,31 @@
   .back{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--navy-900);text-decoration:none;margin-bottom:28px;}
   footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;}
 </style>
+<!-- Meta Pixel Code (ładowany dopiero po zgodzie z banera cookie) -->
+<script>
+(function(){
+  function loadPixel(){
+    if(window.fbq) return;
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1552620727926513');
+    fbq('track', 'PageView');
+  }
+  var consent;
+  try { consent = localStorage.getItem('ef-cookie-consent'); } catch(e) { consent = null; }
+  if(consent === 'accepted') loadPixel();
+  document.addEventListener('ef:cookie-consent', function(e){
+    if(e.detail && e.detail.value === 'accepted') loadPixel();
+  });
+})();
+</script>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 

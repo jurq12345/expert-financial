@@ -36,6 +36,31 @@
   .back{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;color:var(--navy-900);text-decoration:none;margin-bottom:28px;}
   footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center;}
 </style>
+<!-- Meta Pixel Code (ładowany dopiero po zgodzie z banera cookie) -->
+<script>
+(function(){
+  function loadPixel(){
+    if(window.fbq) return;
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1552620727926513');
+    fbq('track', 'PageView');
+  }
+  var consent;
+  try { consent = localStorage.getItem('ef-cookie-consent'); } catch(e) { consent = null; }
+  if(consent === 'accepted') loadPixel();
+  document.addEventListener('ef:cookie-consent', function(e){
+    if(e.detail && e.detail.value === 'accepted') loadPixel();
+  });
+})();
+</script>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -76,7 +101,8 @@
     <p>Dane z formularza przechowujemy przez czas niezbędny do obsługi zapytania i ewentualnej dalszej współpracy, nie dłużej niż 3 lata od ostatniego kontaktu — chyba że przepisy prawa (np. podatkowe) wymagają dłuższego okresu.</p>
 
     <h2>5. Pliki cookies</h2>
-    <p>Nie używamy plików cookie do śledzenia, profilowania ani celów marketingowych — na stronie nie działają żadne narzędzia analityczne ani reklamowe. Nasz dostawca infrastruktury (Cloudflare) może zapisywać techniczne pliki cookie niezbędne do bezpieczeństwa i prawidłowego działania strony; zgodnie z art. 173 ust. 3 pkt 2 Prawa telekomunikacyjnego takie pliki nie wymagają zgody użytkownika.</p>
+    <p>Za Twoją zgodą (przycisk „Akceptuję” w banerze cookie) korzystamy z Piksela Meta, narzędzia Meta Platforms Ireland Ltd., które zapisuje pliki cookie i przekazuje Meta informacje o odwiedzinach strony. Służy nam do mierzenia skuteczności reklam na Facebooku i Instagramie oraz docierania z reklamami do osób, które odwiedziły stronę. Meta może przetwarzać te dane także poza Europejskim Obszarem Gospodarczym na podstawie standardowych klauzul umownych. Jeśli klikniesz „Odrzuć”, piksel nie jest uruchamiany. Zgodę możesz wycofać w dowolnym momencie, usuwając dane strony w przeglądarce — baner pojawi się ponownie.</p>
+    <p>Nasz dostawca infrastruktury (Cloudflare) może zapisywać techniczne pliki cookie niezbędne do bezpieczeństwa i prawidłowego działania strony; zgodnie z art. 173 ust. 3 pkt 2 Prawa telekomunikacyjnego takie pliki nie wymagają zgody użytkownika.</p>
 
     <h2>6. Twoje prawa</h2>
     <ul>
